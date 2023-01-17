@@ -38,6 +38,20 @@ router.delete(
     }
 );
 
+// Restore session user
+router.get(
+    '/',
+    restoreUser,
+    (req, res) => {
+        const { user } = req;
+        if (user) {
+            return res.json({
+                user: user.toSafeObject()
+            });
+        } else return res.json({});
+    }
+);
+
 fetch('/api/session', {
     method: 'POST',
     headers: {
@@ -68,9 +82,9 @@ fetch('/api/session', {
 fetch('/api/session', {
     method: 'DELETE',
     headers: {
-      "Content-Type": "application/json",
-      "XSRF-TOKEN": `<value of XSRF-TOKEN cookie>`
+        "Content-Type": "application/json",
+        "XSRF-TOKEN": `<value of XSRF-TOKEN cookie>`
     }
-  }).then(res => res.json()).then(data => console.log(data));
+}).then(res => res.json()).then(data => console.log(data));
 
 module.exports = router;
