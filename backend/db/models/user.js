@@ -1,5 +1,5 @@
 'use strict';
-const {Model, Validator} = require('sequelize');
+const { Model, Validator } = require('sequelize');
 const bcrypt = require('bcryptjs');
 
 module.exports = (sequelize, DataTypes) => {
@@ -13,9 +13,13 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
 
+    validatePassword(password) {
+      return bcrypt.compareSync(password, this.hashedPassword.toString());
+    }
+
     toSafeObject() {
-      const { id, username, email } = this; // context will be the User instance
-      return { id, username, email };
+      const { id, username, email, firstName, lastName } = this; // context will be the User instance
+      return { id, username, email, firstName, lastName };
     }
 
     static getCurrentUserById(id) {
@@ -32,6 +36,7 @@ module.exports = (sequelize, DataTypes) => {
           }
         }
       });
+      console.log("user id is: ", user.id);
       if (user && user.validatePassword(password)) {
         return await User.scope('currentUser').findByPk(user.id);
       }
@@ -42,6 +47,8 @@ module.exports = (sequelize, DataTypes) => {
       const user = await User.create({
         username,
         email,
+        firstName,
+        lastName,
         hashedPassword
       });
       return await User.scope('currentUser').findByPk(user.id);
@@ -66,6 +73,20 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         len: [3, 256],
         isEmail: true
+      }
+    },
+    firstName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [1, 256]
+      }
+    },
+    lastName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [1, 256]
       }
     },
     hashedPassword: {
