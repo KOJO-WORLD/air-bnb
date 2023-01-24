@@ -11,6 +11,20 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      User.hasMany(
+        models.Spot,
+        { foreignKey: 'ownerId', onDelete: 'CASCADE', hooks: true }
+      )
+
+      User.hasMany(
+        models.Booking,
+        { foreignKey: 'ownerId', onDelete: 'CASCADE', hooks: true }
+      )
+
+      User.hasMany(
+        models.Review,
+        { foreignKey: 'ownerId', onDelete: 'CASCADE', hooks: true }
+      )
     }
 
     validatePassword(password) {
