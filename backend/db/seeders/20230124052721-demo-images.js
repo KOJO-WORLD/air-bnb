@@ -163,5 +163,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
+    await queryInterface.bulkDelete('Images', {spotId: {[Op.in]: [1, 2, 3, 4]}}, {});
   }
 };

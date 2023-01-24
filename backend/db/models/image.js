@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     imageabletype: {
-      type: DataTypes.ENUM,
+      type: DataTypes.ENUM('spot','review'),
       allowNull: false
     },
     preview: {
