@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const { Spot, Image, Sequelize, sequelize } = require('../../db/models');
+const { Image, Review, Sequelize, sequelize } = require('../../db/models');
 const { requireAuth } = require('../../utils/auth');
 
 // Delete a Spot Image
@@ -12,7 +12,7 @@ router.delete(
     async (req, res, next) => {
         const currUser = req.user;
         const currImage = await Image.scope('owner').findByPk(req.params.imageId);
-        const currSpot = await Spot.findByPk(currImage.imageableId);
+        const currReview = await Review.findByPk(currImage.imageableId);
 
         if (!currImage) {
             const err = new Error();
@@ -21,7 +21,7 @@ router.delete(
             return res.json({ status: err.status, message: err.message })
         }
 
-        if (currUser.id !== currSpot.ownerId) {
+        if (currUser.id !== currReview.userId) {
             const err = new Error();
             err.status = 403;
             err.message = "Only the owner can delete this review image";

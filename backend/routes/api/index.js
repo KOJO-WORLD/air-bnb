@@ -7,11 +7,10 @@ spotsRouter = require('./spots.js');
 bookingsRouter = require('./bookings.js');
 reviewsRouter = require('./reviews.js');
 spotImagesRouter = require('./spot-images.js');
-reviewImagesRouter = require('./');
+reviewImagesRouter = require('./review-images.js');
 const { restoreUser } = require('../../utils/auth.js');
 
 router.use(restoreUser);
-router.use('/api', apiRouter);
 router.use('/session', sessionRouter);
 router.use('/users', usersRouter);
 router.use('/spots', spotsRouter);
@@ -19,6 +18,7 @@ router.use('/bookings', bookingsRouter);
 router.use('/reviews', reviewsRouter);
 router.use('/spot-images', spotImagesRouter);
 router.use('/review-images', reviewImagesRouter);
+
 
 router.post('/test', function (req, res) {
   res.json({ requestBody: req.body });
@@ -41,6 +41,8 @@ router.get('/set-token-cookie', async (_req, res) => {
 });
 
 // GET /api/restore-user
+
+
 router.get(
   '/restore-user',
   (req, res) => {

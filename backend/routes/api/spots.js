@@ -52,20 +52,25 @@ const validateNewReview = [
 router.get(
     '/',
     async (req, res) => {
-        const { page, size, minLat, maxLat, minLng, maxLng, minPrice, maxPrice } = req.query
+        let { page, size, minLat, maxLat, minLng, maxLng, minPrice, maxPrice } = req.query
 
         if (!page) page = 0;
         if (page > 10) page = 10;
         if (!size) size = 20;
         if (size > 10) size = 20;
-        if (!minPrice) minPrice = 0;
-        if (!maxPrice) maxPrice = 0;
+        if (!minPrice) minPrice = 0.0;
+        if (!maxPrice) maxPrice = 999999999.99;
+
+        if (!minLat) minLat = -90.0;
+        if (!maxLat) maxLat = 90.0;
+        if (!minLng) minLng = -180.0;
+        if (!maxLng) maxLng = 180.0;
 
         const pagination = {};
 
         if (page >= 0 && size >= 1) {
             pagination.limit = size
-            pagination.offset = size * page - 1
+            pagination.offset = size * page - 2
         }
 
         const Op = Sequelize.Op;
