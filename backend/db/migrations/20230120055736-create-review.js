@@ -29,7 +29,7 @@ module.exports = {
       },
       review: {
         type: Sequelize.STRING,
-        allowNull: true,
+        allowNull: false,
         validate: {
           len: [0, 1000]
         }
@@ -39,7 +39,7 @@ module.exports = {
         allowNull: false,
         validate: {
           max: 5,
-          min: 0
+          min: 1
         }
       },
       createdAt: {

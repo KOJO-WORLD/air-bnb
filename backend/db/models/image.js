@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class image extends Model {
+  class Image extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
       )
     }
   }
-  image.init({
+  Image.init({
     url: {
       type: DataTypes.STRING,
       allowNull: false
@@ -32,21 +32,26 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     imageabletype: {
-      type: DataTypes.ENUM('spot','review'),
+      type: DataTypes.ENUM('spot', 'review'),
       allowNull: false
     },
     preview: {
       type: DataTypes.BOOLEAN,
-      allowNull: false
+      allowNull: true
     }
   }, {
     sequelize,
-    modelName: 'image',
+    modelName: 'Image',
     defaultScope: {
       attributes: {
-        exclude: ['createdAt', 'updatedAt']
+        exclude: ['imageableId', 'imageabletype', 'createdAt', 'updatedAt']
+      }
+    },
+    scopes: {
+      owner: {
+        attributes: {}
       }
     }
   });
-  return image;
+  return Image;
 };

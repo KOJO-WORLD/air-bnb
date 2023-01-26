@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
 
       User.hasMany(
         models.Review,
-        { foreignKey: 'ownerId', onDelete: 'CASCADE', hooks: true }
+        { foreignKey: 'userId', onDelete: 'CASCADE', hooks: true }
       )
     }
 
@@ -50,13 +50,13 @@ module.exports = (sequelize, DataTypes) => {
           }
         }
       });
-      console.log("user id is: ", user.id);
+      // console.log("user id is: ", user.id);
       if (user && user.validatePassword(password)) {
         return await User.scope('currentUser').findByPk(user.id);
       }
     }
 
-    static async signup({ username, email, password }) {
+    static async signup({ username, email, password, firstName, lastName }) {
       const hashedPassword = bcrypt.hashSync(password);
       const user = await User.create({
         username,
@@ -74,8 +74,12 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         len: [4, 30],
-        isNotEmail() {
-          if (this.isEmail(value)) {
+        // isEmail: {
+        //   args: false,
+        //   msg: "Cannot be an email."
+        // },
+        isNotEmail(value) {
+          if (Validator.isEmail(value)) {
             throw new Error("Cannot be an email.");
           }
         }

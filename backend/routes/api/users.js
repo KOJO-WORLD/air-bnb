@@ -65,16 +65,46 @@ router.post(
     '/',
     validateSignup,
     async (req, res) => {
-        const { email, password, username, firstName, lastName } = req.body;
-        const user = await User.signup({ email, username, password, firstName, lastName });
+      const { firstName, lastName, email, password, username } = req.body;
+      const user = await User.signup({  firstName, lastName, email, username, password });
+        // vscode lies
+      await setTokenCookie(res, user);
 
-        await setTokenCookie(res, user);
-
-        return res.json({
-            user
-        });
+      return res.json({
+        user
+      });
     }
-);
+  );
+// router.post(
+//     '/',
+//     validateSignup,
+//     async (req, res, next) => {
+//         const { email, password, username, firstName, lastName } = req.body;
+//         const reqEmail = email;
+//         const userChecker = await User.findOne({
+//             where: {
+//                 email
+//             }
+//         })
+
+//         console.log(userChecker, 'test');
+
+//         if(userChecker) {
+//             const err = new Error();
+//             err.status = 403;
+//             err.message = "User with that email already exists";
+//             return next(err);
+//         }
+
+//         const user = await User.signup({ email, username, password, firstName, lastName });
+
+//         await setTokenCookie(res, user);
+
+//         return res.json({
+//             user
+//         });
+//     }
+// );
 
 // fetch('/api/users', {
 //     method: 'POST',
