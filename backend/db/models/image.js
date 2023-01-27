@@ -31,7 +31,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    imageabletype: {
+    imageableType: {
       type: DataTypes.ENUM('spot', 'review'),
       allowNull: false
     },
@@ -44,7 +44,7 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'Image',
     defaultScope: {
       attributes: {
-        exclude: ['imageableId', 'imageabletype', 'createdAt', 'updatedAt']
+        exclude: ['imageableId', 'imageableType', 'createdAt', 'updatedAt']
       }
     },
     scopes: {

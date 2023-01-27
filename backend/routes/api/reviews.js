@@ -91,7 +91,7 @@ router.post(
         const newImage = await Image.create({
             url,
             imageableId: revId,
-            imageabletype: 'review',
+            imageableType: 'review',
         })
 
         return res.json({

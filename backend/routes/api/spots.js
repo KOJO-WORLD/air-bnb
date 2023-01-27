@@ -218,7 +218,7 @@ router.post(
             id,
             url,
             imageableId: spotId,
-            imageabletype: 'spot',
+            imageableType: 'spot',
             preview,
         })
 
