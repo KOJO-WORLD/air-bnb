@@ -1,22 +1,27 @@
 // backend/routes/api/index.js
-// const router = require('express').Router();
 const express = require('express');
 const router = express.Router();
 usersRouter = require('./users.js');
 sessionRouter = require('./session.js');
+spotsRouter = require('./spots.js');
+bookingsRouter = require('./bookings.js');
+reviewsRouter = require('./reviews.js');
+spotImagesRouter = require('./spot-images.js');
+reviewImagesRouter = require('./review-images.js');
 const { restoreUser } = require('../../utils/auth.js');
 
-// const apiRouter = require('./api');
-
-// router.use('/api', apiRouter);
 router.use(restoreUser);
-
 router.use('/session', sessionRouter);
-
 router.use('/users', usersRouter);
+router.use('/spots', spotsRouter);
+router.use('/bookings', bookingsRouter);
+router.use('/reviews', reviewsRouter);
+router.use('/spot-images', spotImagesRouter);
+router.use('/review-images', reviewImagesRouter);
+
 
 router.post('/test', function (req, res) {
-    res.json({ requestBody: req.body });
+  res.json({ requestBody: req.body });
 });
 
 // GET /api/set-token-cookie
@@ -24,15 +29,15 @@ const { setTokenCookie } = require('../../utils/auth');
 const { User } = require('../../db/models');
 
 router.get('/set-token-cookie', async (_req, res) => {
-    console.log('test');
-    const user = await User.findOne({
-        where: {
-            username: 'Demo-lition'
-        }
-    });
-    console.log(user);
-    setTokenCookie(res, user);
-    return res.json({ user });
+  console.log('test');
+  const user = await User.findOne({
+    where: {
+      username: 'Demo-lition'
+    }
+  });
+  console.log(user);
+  setTokenCookie(res, user);
+  return res.json({ user });
 });
 
 // GET /api/restore-user
@@ -46,6 +51,7 @@ router.get(
 );
 
 const { requireAuth } = require('../../utils/auth.js');
+const image = require('../../db/models/image.js');
 router.get(
   '/require-auth',
   requireAuth,

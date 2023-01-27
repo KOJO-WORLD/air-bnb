@@ -1,23 +1,12 @@
 'use strict';
 
-// /** @type {import('sequelize-cli').Migration} */
-
 const bcrypt = require("bcryptjs");
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    /**
-     * Add seed commands here.
-     *
-     * Example:
-     * await queryInterface.bulkInsert('People', [{
-     *   name: 'John Doe',
-     *   isBetaMember: false
-     * }], {});
-    */
-    // options.tableName = 'Users';
     await queryInterface.bulkInsert('Users', [
       {
+        id: 1,
         email: 'fake1@fake.com',
         username: 'Demo-lition',
         firstName: 'First',
@@ -25,6 +14,7 @@ module.exports = {
         hashedPassword: bcrypt.hashSync('Password')
       },
       {
+        id: 2,
         email: 'fake2@fake.com',
         username: 'FakeUser1',
         firstName: 'Second',
@@ -32,6 +22,7 @@ module.exports = {
         hashedPassword: bcrypt.hashSync('Password2')
       },
       {
+        id: 3,
         email: 'fake3@fake.com',
         username: 'FakeUser2',
         firstName: 'Third',
@@ -43,13 +34,6 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('People', null, {});
-     */
-    // options.tableName = 'Users';
     const Op = Sequelize.Op;
     await queryInterface.bulkDelete('Users', {
       username: { [Op.in]: ['Demo-lition', 'FakeUser1', 'FakeUser2'] }
