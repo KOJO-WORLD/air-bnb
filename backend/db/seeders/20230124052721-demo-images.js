@@ -1,7 +1,14 @@
 'use strict';
+
+let options = {};
+if (process.env.NODE_ENV === 'production') {
+  options.schema = process.env.SCHEMA;  // define your schema in options object
+}
+
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.bulkInsert('Images', [
+    options.tableName = 'Images'
+    await queryInterface.bulkInsert(options, [
       // Spot Images
       {
         url: 'https://axolotlplanet.com/wp-content/uploads/2021/07/File_0004-e1648004625497-1536x1536.png',
@@ -147,6 +154,7 @@ module.exports = {
 
   async down(queryInterface, Sequelize) {
     const Op = Sequelize.Op;
-    await queryInterface.bulkDelete('Images', { imageableType: { [Op.in]: ['review', 'spot'] } }, {});
+    options.tableName = 'Images'
+    await queryInterface.bulkDelete(options, null, {});
   }
 };
