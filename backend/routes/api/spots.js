@@ -70,7 +70,7 @@ router.get(
 
         if (page >= 0 && size >= 1) {
             pagination.limit = size
-            pagination.offset = size * page - 2
+            pagination.offset = size * (page - 1)
         }
 
         const Op = Sequelize.Op;
