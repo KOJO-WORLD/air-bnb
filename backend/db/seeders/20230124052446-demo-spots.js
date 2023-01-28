@@ -10,7 +10,6 @@ module.exports = {
     options.tableName = 'Spots'
     await queryInterface.bulkInsert(options, [
       {
-        id: 1,
         ownerId: 1,
         address: '13624 Moorpark St.',
         city: 'Sherman Oaks',
@@ -23,7 +22,6 @@ module.exports = {
         price: '599.99'
       },
       {
-        id: 2,
         ownerId: 1,
         address: '16629 Knapp St.',
         city: 'North Hills',
@@ -36,7 +34,6 @@ module.exports = {
         price: '999.99'
       },
       {
-        id: 3,
         ownerId: 2,
         address: '9858 Balboa Blvd',
         city: 'Northridge',

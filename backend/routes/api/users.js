@@ -8,31 +8,31 @@ const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 
 const validateSignup = [
-    check('email')
-        .exists({ checkFalsy: true })
-        .isEmail()
-        .withMessage('Please provide a valid email.'),
-    check('username')
-        .exists({ checkFalsy: true })
-        .isLength({ min: 4 })
-        .withMessage('Please provide a username with at least 4 characters.'),
-    check('username')
-        .not()
-        .isEmail()
-        .withMessage('Username cannot be an email.'),
-    check('password')
-        .exists({ checkFalsy: true })
-        .isLength({ min: 6 })
-        .withMessage('Password must be 6 characters or more.'),
-    check('firstName')
-        .exists({ checkFalsy: true })
-        .isLength({ min: 1 })
-        .withMessage('Password must be 1 character or more.'),
-    check('lastName')
-        .exists({ checkFalsy: true })
-        .isLength({ min: 1 })
-        .withMessage('Password must be 1 character or more.'),
-    handleValidationErrors
+  check('email')
+    .exists({ checkFalsy: true })
+    .isEmail()
+    .withMessage('Please provide a valid email.'),
+  check('username')
+    .exists({ checkFalsy: true })
+    .isLength({ min: 4 })
+    .withMessage('Please provide a username with at least 4 characters.'),
+  check('username')
+    .not()
+    .isEmail()
+    .withMessage('Username cannot be an email.'),
+  check('password')
+    .exists({ checkFalsy: true })
+    .isLength({ min: 6 })
+    .withMessage('Password must be 6 characters or more.'),
+  check('firstName')
+    .exists({ checkFalsy: true })
+    .isLength({ min: 1 })
+    .withMessage('Password must be 1 character or more.'),
+  check('lastName')
+    .exists({ checkFalsy: true })
+    .isLength({ min: 1 })
+    .withMessage('Password must be 1 character or more.'),
+  handleValidationErrors
 ];
 
 // Log in
@@ -62,19 +62,50 @@ const validateSignup = [
 
 // Sign up
 router.post(
-    '/',
-    validateSignup,
-    async (req, res) => {
-      const { firstName, lastName, email, password, username } = req.body;
-      const user = await User.signup({  firstName, lastName, email, username, password });
-        // vscode lies
-      await setTokenCookie(res, user);
+  '/',
+  validateSignup,
+  async (req, res) => {
+    // add error handling for if the user already exists
+    const { firstName, lastName, email, password, username } = req.body;
+    const testEmail = await User.findOne({
+      where: {
+        email
+      }
+    });
 
-      return res.json({
-        user
-      });
+    const testUsername = await User.findOne({
+      where: {
+        username
+      }
+    });
+
+    if (testEmail) {
+      const err = new Error();
+
+      err.message = "User already exists"
+      err.status = 403
+      err.errors = "User with that email already exists"
+      return res.json({ status: err.status, message: err.message });
     }
-  );
+
+    if (testUsername) {
+      const err = new Error();
+
+      err.message = "User already exists"
+      err.status = 403
+      err.errors = "User with that username already exists"
+      return res.json({ status: err.status, message: err.message });
+    }
+
+    const user = await User.signup({ firstName, lastName, email, username, password });
+    // vscode lies
+    await setTokenCookie(res, user);
+
+    return res.json({
+      user
+    });
+  }
+);
 // router.post(
 //     '/',
 //     validateSignup,

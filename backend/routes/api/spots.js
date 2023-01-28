@@ -54,7 +54,7 @@ router.get(
     async (req, res) => {
         let { page, size, minLat, maxLat, minLng, maxLng, minPrice, maxPrice } = req.query
 
-        if (!page) page = 0;
+        if (!page) page = 1;
         if (page > 10) page = 10;
         if (!size) size = 20;
         if (size > 10) size = 20;
@@ -86,11 +86,23 @@ router.get(
                     [Op.between]: [minLng, maxLng]
                 }
             },
+            attributes: {
+                include: [
+                    [sequelize.fn('COUNT', sequelize.col('stars')), 'numReviews'],
+                    [sequelize.fn('AVG', sequelize.col('stars')), 'avgStarRating']
+                ]
+            },
+            include: [
+                {
+                    model: Review,
+                    attributes: []
+                }
+            ],
             ...pagination
         });
 
         return res.json({
-            'spots': spots
+            'Spots': spots
         });
     }
 )
@@ -105,11 +117,25 @@ router.get(
         const spots = await Spot.findAll({
             where: {
                 ownerId: currUser.id
-            }
+            },
+            attributes: {
+                include: [
+                    [sequelize.fn('COUNT', sequelize.col('stars')), 'numReviews'],
+                    [sequelize.fn('AVG', sequelize.col('stars')), 'avgStarRating']
+                ]
+            },
+            include: [
+                {
+                    model: Review,
+                    attributes: []
+                }
+            ]
         });
 
+        //add numstars
+        //add avgRating
         return res.json({
-            'spots': spots
+            'Spots': spots
         });
     }
 )
