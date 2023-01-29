@@ -46,7 +46,6 @@ module.exports = {
         price: '1499.99'
       },
       {
-        id: 4,
         ownerId: 1,
         address: '26101 Magic Mountain Pkwy',
         city: 'Valencia',
