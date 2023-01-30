@@ -11,12 +11,15 @@ router.delete(
     requireAuth,
     async (req, res, next) => {
         const currUser = req.user;
-        const currImage = await Image.findOne({
+        const currImage = await Image.scope('owner').findOne({
             where: {
                 id: req.params.imageId,
                 imageableType: 'spot'
             }
         });
+
+        // console.log('test', currImage);
+        // console.log(currImage);
 
         if (!currImage) {
             const err = new Error();
@@ -25,7 +28,13 @@ router.delete(
             return res.json({ status: err.status, message: err.message })
         }
 
-        const currSpot = await Spot.findByPk(currImage.imageableId);
+        const currSpot = await Spot.findOne({
+            where: {
+                id: currImage.imageableId
+            }
+        });
+
+        // console.log('test1', currSpot);
 
         if (!currSpot) {
             const err = new Error();
