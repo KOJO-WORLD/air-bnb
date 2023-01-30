@@ -86,12 +86,6 @@ router.get(
                     [Op.between]: [minLng, maxLng]
                 }
             },
-            // attributes: {
-            //     include: [
-            //         [sequelize.fn('COUNT', sequelize.col('stars')), 'numReviews'],
-            //         [sequelize.fn('AVG', sequelize.col('stars')), 'avgStarRating']
-            //     ]
-            // },
             include: [
                 {
                     model: Review,
@@ -150,21 +144,13 @@ router.get(
             where: {
                 ownerId: currUser.id
             },
-            // attributes: {
-            //     include: [
-            //         [sequelize.fn('COUNT', sequelize.col('stars')), 'numReviews'],
-            //         [sequelize.fn('AVG', sequelize.col('stars')), 'avgStarRating']
-            //     ]
-            // },
             include: [
                 {
                     model: Review,
-                    attributes: []
                 },
                 {
                     model: Image,
                     as: 'SpotImages',
-                    attributes: []
                 },
             ]
         });
@@ -176,32 +162,35 @@ router.get(
             return res.json({ status: err.status, message: err.message })
         }
 
-        let spotList = [];
-        spots.forEach(spot => {
-            spotList.push(spot.toJSON());
-        });
+        if (spots.length) {
+            let spotList = [];
+            spots.forEach(spot => {
+                spotList.push(spot.toJSON());
+            });
 
-        spotList.forEach(spot => {
-            spot.SpotImages.forEach(image => {
-                let starSum = spot.Reviews.reduce((acc, currVal) => {
-                    return currVal.stars + acc
-                }, 0);
+            spotList.forEach(spot => {
+                spot.SpotImages.forEach(image => {
+                    let starSum = spot.Reviews.reduce((acc, currVal) => {
+                        return currVal.stars + acc
+                    }, 0);
 
-                spot.avgRating = (starSum / (spot.Reviews.length)).toFixed(2)
+                    spot.avgRating = (starSum / (spot.Reviews.length)).toFixed(2)
 
-                delete spot.Reviews
+                    delete spot.Reviews
 
-                if (image.preview) {
-                    spot.previewImage = image.url
+                    if (image.preview) {
+                        spot.previewImage = image.url
+                    }
+                })
+
+                if (!spot.previewImage) {
+                    spot.previewImage = 'none'
                 }
-            })
 
-            if (!spot.previewImage) {
-                spot.previewImage = 'none'
-            }
+                delete spot.SpotImages
+            });
+        }
 
-            delete spot.SpotImages
-        });
 
         //add numstars
         //add avgRating
@@ -225,16 +214,7 @@ router.get(
             return res.json({ status: err.status, message: err.message })
         }
 
-        const spot = await Spot.findAll({
-            where: {
-                id: spotId
-            },
-            // attributes: {
-            //     include: [
-            //         [sequelize.fn('COUNT', sequelize.col('stars')), 'numReviews'],
-            //         [sequelize.fn('AVG', sequelize.col('stars')), 'avgStarRating']
-            //     ]
-            // },
+        const spot = await Spot.findByPk(spotId, {
             include: [
                 {
                     model: Review,
@@ -252,26 +232,32 @@ router.get(
 
         });
 
-        let spotList = [];
-        spots.forEach(spot => {
-            spotList.push(spot.toJSON());
-        });
+        if (!spot) {
+            const err = new Error();
+            err.status = 404;
+            err.message = "Spots couldn't be found";
+            return res.json({ status: err.status, message: err.message })
+        }
 
-        spotList.forEach(spot => {
-            spot.SpotImages.forEach(image => {
-                let starSum = spot.Reviews.reduce((acc, currVal) => {
-                    return currVal.stars + acc
-                }, 0);
+        let jsonSpot = spot.toJSON()
 
-                spot.avgRating = (starSum / (spot.Reviews.length)).toFixed(2)
+        let starSum = spot.Reviews.reduce((acc, currVal) => {
+            return currVal.stars + acc
+        }, 0);
 
-                spot.numReviews = spot.Reviews.length
+        spot.avgRating = (starSum / (spot.Reviews.length)).toFixed(2)
 
-                delete spot.Reviews
-            })
-        });
+        spot.numReviews = spot.Reviews.length
 
-        return res.json(spot);
+        delete spot.Reviews
+
+
+        jsonSpot.SpotImages.forEach(image => {
+
+        })
+
+
+        return res.json(spotList);
     }
 )
 
