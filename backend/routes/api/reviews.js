@@ -94,9 +94,7 @@ router.post(
             imageableType: 'review',
         })
 
-        return res.json({
-            newImage
-        });
+        return res.json(newImage);
     }
 )
 
@@ -132,9 +130,7 @@ router.put(
 
         await currReview.save()
 
-        return res.json({
-            currReview
-        });
+        return res.json(currReview);
     }
 )
 

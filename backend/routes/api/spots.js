@@ -86,23 +86,55 @@ router.get(
                     [Op.between]: [minLng, maxLng]
                 }
             },
-            attributes: {
-                include: [
-                    [sequelize.fn('COUNT', sequelize.col('stars')), 'numReviews'],
-                    [sequelize.fn('AVG', sequelize.col('stars')), 'avgStarRating']
-                ]
-            },
+            // attributes: {
+            //     include: [
+            //         [sequelize.fn('COUNT', sequelize.col('stars')), 'numReviews'],
+            //         [sequelize.fn('AVG', sequelize.col('stars')), 'avgStarRating']
+            //     ]
+            // },
             include: [
                 {
                     model: Review,
-                    attributes: []
-                }
+                },
+                {
+                    model: Image,
+                    as: 'SpotImages',
+                },
             ],
             ...pagination
         });
 
+        let spotList = [];
+        spots.forEach(spot => {
+            spotList.push(spot.toJSON());
+        });
+
+        spotList.forEach(spot => {
+            let starSum = spot.Reviews.reduce((acc, currVal) => {
+                return currVal.stars + acc
+            }, 0);
+
+            spot.avgRating = (starSum / (spot.Reviews.length)).toFixed(2)
+
+            delete spot.Reviews
+
+            spot.SpotImages.forEach(image => {
+                if (image.preview) {
+                    spot.previewImage = image.url
+                }
+            })
+
+            if (!spot.previewImage) {
+                spot.previewImage = 'none'
+            }
+
+            delete spot.SpotImages
+        });
+
+        //add numstars
+        //add avgRating
         return res.json({
-            'Spots': spots
+            'Spots': spotList
         });
     }
 )
@@ -118,24 +150,56 @@ router.get(
             where: {
                 ownerId: currUser.id
             },
-            attributes: {
-                include: [
-                    [sequelize.fn('COUNT', sequelize.col('stars')), 'numReviews'],
-                    [sequelize.fn('AVG', sequelize.col('stars')), 'avgStarRating']
-                ]
-            },
+            // attributes: {
+            //     include: [
+            //         [sequelize.fn('COUNT', sequelize.col('stars')), 'numReviews'],
+            //         [sequelize.fn('AVG', sequelize.col('stars')), 'avgStarRating']
+            //     ]
+            // },
             include: [
                 {
                     model: Review,
                     attributes: []
-                }
+                },
+                {
+                    model: Image,
+                    as: 'SpotImages',
+                    attributes: []
+                },
             ]
+        });
+
+        let spotList = [];
+        spots.forEach(spot => {
+            spotList.push(spot.toJson());
+        });
+
+        spotList.forEach(spot => {
+            spot.SpotImages.forEach(image => {
+                let starSum = spot.Reviews.reduce((acc, currVal) => {
+                    return currVal.stars + acc
+                }, 0);
+
+                spot.avgRating = (starSum / (spot.Reviews.length)).toFixed(2)
+
+                delete spot.Reviews
+
+                if (image.preview) {
+                    spot.previewImage = image.url
+                }
+            })
+
+            if (!spot.previewImage) {
+                spot.previewImage = 'none'
+            }
+
+            delete spot.SpotImages
         });
 
         //add numstars
         //add avgRating
         return res.json({
-            'Spots': spots
+            'Spots': spotList
         });
     }
 )
@@ -182,9 +246,7 @@ router.get(
 
         });
 
-        return res.json({
-            spot
-        });
+        return res.json(spot);
     }
 )
 
@@ -210,9 +272,7 @@ router.post(
         });
 
         res.status(201);
-        return res.json({
-            newSpot
-        })
+        return res.json(newSpot);
     }
 )
 
@@ -248,9 +308,7 @@ router.post(
             preview,
         })
 
-        return res.json({
-            newImage
-        });
+        return res.json(newImage);
     }
 )
 
@@ -293,9 +351,7 @@ router.put(
 
         await spot.save()
 
-        return res.json({
-            spot
-        });
+        return res.json(spot);
     }
 )
 
@@ -407,9 +463,7 @@ router.post(
         });
 
         res.status(201);
-        return res.json({
-            newReview
-        });
+        return res.json(newReview);
     }
 )
 
@@ -512,9 +566,7 @@ router.post(
         });
 
         res.status(201);
-        return res.json({
-            'New Booking': newBooking
-        });
+        return res.json(newBooking);
     }
 )
 

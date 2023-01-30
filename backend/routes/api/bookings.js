@@ -77,9 +77,7 @@ router.put(
 
         await currBooking.save()
 
-        return res.json({
-            'Edited Booking': currBooking
-        })
+        return res.json(currBooking)
     }
 )
 
