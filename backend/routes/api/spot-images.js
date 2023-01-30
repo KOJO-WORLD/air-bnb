@@ -22,6 +22,13 @@ router.delete(
 
         const currSpot = await Spot.findByPk(currImage.imageableId);
 
+        if (!currSpot) {
+            const err = new Error();
+            err.status = 404;
+            err.message = "Image couldn't be found";
+            return res.json({ status: err.status, message: err.message })
+        }
+
         if (currUser.id !== currSpot.ownerId) {
             const err = new Error();
             err.status = 403;

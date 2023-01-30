@@ -22,6 +22,13 @@ router.delete(
 
         const currReview = await Review.findByPk(currImage.imageableId);
 
+        if (!currReview) {
+            const err = new Error();
+            err.status = 404;
+            err.message = "Image couldn't be found";
+            return res.json({ status: err.status, message: err.message })
+        }
+
         if (currUser.id !== currReview.userId) {
             const err = new Error();
             err.status = 403;

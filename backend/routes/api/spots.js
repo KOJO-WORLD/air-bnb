@@ -169,6 +169,13 @@ router.get(
             ]
         });
 
+        if (!spots) {
+            const err = new Error();
+            err.status = 404;
+            err.message = "Spots couldn't be found";
+            return res.json({ status: err.status, message: err.message })
+        }
+
         let spotList = [];
         spots.forEach(spot => {
             spotList.push(spot.toJSON());
@@ -259,7 +266,7 @@ router.get(
                 spot.avgRating = (starSum / (spot.Reviews.length)).toFixed(2)
 
                 spot.numReviews = spot.Reviews.length
-                
+
                 delete spot.Reviews
             })
         });
