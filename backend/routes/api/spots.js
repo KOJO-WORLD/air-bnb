@@ -171,7 +171,7 @@ router.get(
 
         let spotList = [];
         spots.forEach(spot => {
-            spotList.push(spot.toJson());
+            spotList.push(spot.toJSON());
         });
 
         spotList.forEach(spot => {
@@ -222,16 +222,15 @@ router.get(
             where: {
                 id: spotId
             },
-            attributes: {
-                include: [
-                    [sequelize.fn('COUNT', sequelize.col('stars')), 'numReviews'],
-                    [sequelize.fn('AVG', sequelize.col('stars')), 'avgStarRating']
-                ]
-            },
+            // attributes: {
+            //     include: [
+            //         [sequelize.fn('COUNT', sequelize.col('stars')), 'numReviews'],
+            //         [sequelize.fn('AVG', sequelize.col('stars')), 'avgStarRating']
+            //     ]
+            // },
             include: [
                 {
                     model: Review,
-                    attributes: []
                 },
                 {
                     model: Image,
@@ -244,6 +243,25 @@ router.get(
                 },
             ]
 
+        });
+
+        let spotList = [];
+        spots.forEach(spot => {
+            spotList.push(spot.toJSON());
+        });
+
+        spotList.forEach(spot => {
+            spot.SpotImages.forEach(image => {
+                let starSum = spot.Reviews.reduce((acc, currVal) => {
+                    return currVal.stars + acc
+                }, 0);
+
+                spot.avgRating = (starSum / (spot.Reviews.length)).toFixed(2)
+
+                spot.numReviews = spot.Reviews.length
+                
+                delete spot.Reviews
+            })
         });
 
         return res.json(spot);

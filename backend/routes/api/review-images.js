@@ -11,8 +11,7 @@ router.delete(
     requireAuth,
     async (req, res, next) => {
         const currUser = req.user;
-        const currImage = await Image.scope('owner').findByPk(req.params.imageId);
-        const currReview = await Review.findByPk(currImage.imageableId);
+        const currImage = await Image.findByPk(req.params.imageId);
 
         if (!currImage) {
             const err = new Error();
@@ -20,6 +19,8 @@ router.delete(
             err.message = "Image couldn't be found";
             return res.json({ status: err.status, message: err.message })
         }
+
+        const currReview = await Review.findByPk(currImage.imageableId);
 
         if (currUser.id !== currReview.userId) {
             const err = new Error();
