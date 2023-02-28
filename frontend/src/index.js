@@ -10,10 +10,6 @@ import sessionReducer from './store/session';
 import { combineReducers } from 'redux';
 import * as sessionActions from './store/session'
 
-const rootReducer = combineReducers({
-  session: sessionReducer,
-})
-
 const store = configureStore();
 
 if (process.env.NODE_ENV !== "production") {
