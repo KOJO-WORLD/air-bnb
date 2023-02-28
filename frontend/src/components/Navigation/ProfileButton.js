@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useDispatch } from 'react-redux';
+import './Navigation.css';
 import * as sessionActions from '../../store/session';
+
 
 function ProfileButton({ user }) {
     const dispatch = useDispatch();
@@ -8,8 +10,11 @@ function ProfileButton({ user }) {
     const ulRef = useRef();
 
     const openMenu = () => {
+        console.log('clicked!');
+        console.log('old menu', showMenu);
         if (showMenu) return;
         setShowMenu(true);
+        console.log('new menu', showMenu);
     };
 
     const logout = (e) => {
