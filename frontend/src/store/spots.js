@@ -85,7 +85,7 @@ const spotsReducer = (state = initialState, action) => {
             newState = {...action.list.Spots};
             return newState;
         case ADD_ONE:
-            newState = [...state, action.spot];
+            newState = {...state, [action.spot.id] : action.spot};
             return newState;
         // case CREATE:
         //     return newState;

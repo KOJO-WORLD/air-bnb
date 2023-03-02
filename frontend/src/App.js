@@ -4,7 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import LoginFormPage from "./components/LoginFormPage";
 import Navigation from "./components/Navigation";
 import SignupFormPage from "./components/SignUpFormPage";
-import SpotDetails from "./components/SpotsList/SpotCard";
+import SpotDetails from "./components/SpotsList/SpotDetails";
 import SpotList from "./components/SpotsList/SpotList";
 import * as sessionActions from "./store/session";
 
