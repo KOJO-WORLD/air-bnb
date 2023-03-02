@@ -10,11 +10,11 @@ function ProfileButton({ user }) {
     const ulRef = useRef();
 
     const openMenu = () => {
-        console.log('clicked!');
-        console.log('old menu', showMenu);
+        // console.log('clicked!');
+        // console.log('old menu', showMenu);
         if (showMenu) return;
         setShowMenu(true);
-        console.log('new menu', showMenu);
+        // console.log('new menu', showMenu);
     };
 
     const logout = (e) => {
