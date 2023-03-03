@@ -1,7 +1,7 @@
 // import { NavLink } from "react-router-dom";
 
 const SpotCard = ({ spot : {name, avgRating, price, previewImage} }) => {
-    console.log(name);
+    // console.log(name);
 
     const rating = avgRating ? avgRating : 'NEW';
 

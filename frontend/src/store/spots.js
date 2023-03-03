@@ -1,13 +1,11 @@
 import { csrfFetch } from "./csrf";
 
-const initialState  = {
-    // spots: []
-}
+const initialState  = {}
 
 const LOAD = 'spots/LOAD';
 const ADD_ONE = 'spots/ADD_ONE';
-// const CREATE = 'spots/CREATE';
-// const UPDATE = 'spots/UPDATE'
+const CREATE = 'spots/CREATE';
+const UPDATE = 'spots/UPDATE'
 const DELETE = 'spots/DELETE'
 
 export const loadSpots = (list) => ({
@@ -20,32 +18,56 @@ export const addOneSpot = (spot) => ({
     spot
 })
 
+export const createSpot = (spot) => ({
+    type: CREATE,
+    spot
+})
+
+export const updateSpot = (spotId) => ({
+    type: UPDATE,
+    spotId
+})
+
 export const deleteSpot = (spotId) => ({
     type: DELETE,
     spotId
 })
 
-// export const createSpot = (spot) => async dispatch => {
-//     const res = await csrfFetch('api/spots', {
-//         method: 'POST',
-//         body: JSON.stringify({
+export const createNewSpot = (spot) => async dispatch => {
+    const { address, city, state, country, lat, lng, name, description, price } = spot;
 
-//         })
-//     })
+    const res = await csrfFetch('api/spots', {
+        method: 'POST',
+        body: JSON.stringify({
+            address,
+            city,
+            state,
+            country,
+            lat,
+            lng,
+            name,
+            description,
+            price
+        })
+    })
 
-//     if(res.ok) {
-//         const newSpot = res.json();
+    const newSpot = res.json();
 
-//         dispatch()
-//     }
-// }
+    const idRes = await csrfFetch(`/api/spots/${newSpot.id}`)
+
+
+    if(res.ok) {
+        const newSpotDetails = idRes.json();
+
+        dispatch(createSpot(newSpotDetails))
+    }
+}
 
 export const getSpots = () => async dispatch => {
     const res = await csrfFetch('/api/spots');
 
     if (res.ok) {
         const list = await res.json();
-        // console.log('list', list);
         // list will be an object with key of 'Spots' and a value of an array of spots
         dispatch(loadSpots(list))
     }
@@ -53,12 +75,10 @@ export const getSpots = () => async dispatch => {
 
 export const getSpotById = (spotId) => async dispatch => {
     const res = await csrfFetch(`/api/spots/${spotId}`)
-    // '/api/spots/:id'
 
     if(res.ok) {
         const spotDetails = await res.json()
-        console.log('hit');
-        console.log(spotDetails);
+        
         //dispatch action for a single spot
         dispatch(addOneSpot(spotDetails));
     }
@@ -83,12 +103,18 @@ const spotsReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD:
             newState = {...action.list.Spots};
+
             return newState;
         case ADD_ONE:
-            newState = {...state, [action.spot.id] : action.spot};
+            newState = {...state, 'spot' : action.spot};
+
             return newState;
-        // case CREATE:
-        //     return newState;
+        case CREATE:
+            newState = {...state};
+
+            newState.spots.push(action.spot)
+
+            return newState;
         // case UPDATE:
         //     return newState;
         case DELETE:
