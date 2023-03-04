@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react"
-import { useDispatch } from "react-redux"
+import { useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
 import { createNewSpot } from "../../store/spots";
 import { useHistory } from "react-router-dom";
 
@@ -52,14 +52,18 @@ const SpotForm = () => {
         }
 
         const createdSpot = dispatch(createNewSpot(payload, imgPayload))
+        console.log(imgPayload);
+        // console.log(createdSpot);
+
+        // const spot = useSelector(state => state.spots.spot);
+
+        // const spot =  createdSpot;
+
+
         if (createdSpot) {
-            history.push(`/spot/${createdSpot.id}`);
+            history.push(`/spot/${createdSpot && createdSpot.id}`);
         }
     }
-
-    // useEffect(() => {
-    //     dispatch(createNewSpot(payload))
-    // }, [dispatch, payload])
 
     return (
         <div>

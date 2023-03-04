@@ -2,8 +2,9 @@
 
 const SpotCard = ({ spot : {name, avgRating, price, previewImage} }) => {
     // console.log(name);
+    // console.log(name, avgRating, isNaN(avgRating));
 
-    const rating = avgRating ? avgRating : 'NEW';
+    const rating = !isNaN(avgRating) ? avgRating : 'NEW';
 
     return (
         <li className="spot-details">

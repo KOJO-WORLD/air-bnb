@@ -59,6 +59,8 @@ export const createNewSpot = (spot, imagePayload) => async dispatch => {
                 preview: true
             }
         })
+
+        const prevIm = prevImgRes.json();
     }
 
     images.map(async (image) => {
@@ -69,6 +71,8 @@ export const createNewSpot = (spot, imagePayload) => async dispatch => {
                 preview: false
             }
         })
+
+        const img = imgRes.json();
     })
 
 
@@ -101,7 +105,7 @@ export const getSpotById = (spotId) => async dispatch => {
 }
 
 export const deleteSpotById = (spotId) => async dispatch => {
-    const res = csrfFetch('/api/spots/:spotId', {
+    const res = csrfFetch(`/api/spots/${spotId}`, {
         method: 'DELETE'
     })
 
@@ -129,6 +133,8 @@ const spotsReducer = (state = initialState, action) => {
             newState = {...state};
 
             newState.spots.push(action.spot)
+
+            newState.spots.spot = action.spot;
 
             return newState;
         // case UPDATE:

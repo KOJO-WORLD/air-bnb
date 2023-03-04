@@ -1,17 +1,18 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { getSpotById } from "../../store/spots";
+import { NavLink, useHistory, useParams } from "react-router-dom";
+import { deleteSpotById, getSpotById } from "../../store/spots";
 
 // ERROR: On Refresh all of the data gets swept away
 const SpotDetails = () => {
     const dispatch = useDispatch();
+    const history = useHistory();
 
     // import useState again when you uncomment this
     // const [auth, setAuth] = useState();
 
     // Probably do if spot.owner = sessionUser set auth to true and show delete/edit button
-    // const sessionUser = useSelector(state => state.session.user);
+    const sessionUser = useSelector(state => state.session.user);
 
     const { spotId } = useParams()
 
@@ -21,9 +22,13 @@ const SpotDetails = () => {
         // dispatch()
     }, [dispatch, spotId])
 
-    console.log(spotId);
+    // console.log(spotId);
 
     const spot = useSelector(state => state.spots.spot);
+
+    // const ownerId = spot && spot.ownerId
+
+    // if (ownerId === sessionUser.id) setAuth(true)
 
     const spotImgArr = spot && spot.SpotImages
 
@@ -35,6 +40,12 @@ const SpotDetails = () => {
     }
 
     const onDelete = () => {
+        dispatch(deleteSpotById(spotId))
+
+        history.push('/');
+    }
+
+    const onEdit = () => {
 
     }
 
@@ -65,7 +76,10 @@ const SpotDetails = () => {
                     {spot && spot.description}
                 </p>
             </div>
-            <button onClick={onDelete}>Delete</button>
+            <button onClick={onDelete} >Delete</button>
+            <NavLink to={`/spots/${spotId}/edit`}>
+                <button>Edit</button>
+            </NavLink>
         </div>
 
     )
