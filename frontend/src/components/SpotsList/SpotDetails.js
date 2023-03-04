@@ -7,50 +7,65 @@ import { getSpotById } from "../../store/spots";
 const SpotDetails = () => {
     const dispatch = useDispatch();
 
+    // import useState again when you uncomment this
+    // const [auth, setAuth] = useState();
+
+    // Probably do if spot.owner = sessionUser set auth to true and show delete/edit button
+    // const sessionUser = useSelector(state => state.session.user);
+
     const { spotId } = useParams()
 
     useEffect(() => {
         console.log('useeffect used');
         dispatch(getSpotById(spotId));
+        // dispatch()
     }, [dispatch, spotId])
 
-    // console.log(spotId);
+    console.log(spotId);
 
     const spot = useSelector(state => state.spots.spot);
 
-    // const spotImgArr = spot.spotImages
+    const spotImgArr = spot && spot.SpotImages
 
-    console.log('here', spot.owner);
+    console.log('here', spot);
+    console.log('check', spotImgArr);
 
     const onClick = () => {
         // open an alert with the text "Feature coming soon".
     }
 
+    const onDelete = () => {
+
+    }
+
+    // const authorized = "delete-button" + (auth ? "" : " hidden");
+
     return (
         <div className="spotInfo">
             <h1>
-                {spot.name}
+                {spot && spot.name}
             </h1>
             <h3>
-                Location: {spot.city}, {spot.state}, {spot.country}
+                Location: {spot && spot.city}, {spot && spot.state}, {spot && spot.country}
             </h3>
             <div className="spotImages">
-                {/* {spotImgArr.map((spotImg) => {
+                {spot && spotImgArr.map((spotImg) => {
                     return <div>
                         <img src={spotImg.url} alt='spot pic'></img>
                     </div>
-                })} */}
+                })}
             </div>
             <div className="callout">
-                <p>${spot.price}/Night</p>
+                <p>${spot && spot.price}/Night</p>
                 <button onClick={onClick}>Reserve</button>
             </div>
-            <h4>Hosted by: {spot.Owner.firstName} {spot.Owner.lastName}</h4>
+            <h4>Hosted by: {spot && spot.Owner.firstName} {spot && spot.Owner.lastName}</h4>
             <div className="description">
                 <p>
-                    {spot.description}
+                    {spot && spot.description}
                 </p>
             </div>
+            <button onClick={onDelete}>Delete</button>
         </div>
 
     )

@@ -5,8 +5,9 @@ const initialState  = {}
 const LOAD = 'spots/LOAD';
 const ADD_ONE = 'spots/ADD_ONE';
 const CREATE = 'spots/CREATE';
-const UPDATE = 'spots/UPDATE'
-const DELETE = 'spots/DELETE'
+const UPDATE = 'spots/UPDATE';
+const DELETE = 'spots/DELETE';
+// const AUTHORIZE = 'spots/AUTHORIZE';
 
 export const loadSpots = (list) => ({
     type: LOAD,
@@ -33,27 +34,42 @@ export const deleteSpot = (spotId) => ({
     spotId
 })
 
-export const createNewSpot = (spot) => async dispatch => {
+// export const authSpot = (spot) => ({
+
+// })
+
+export const createNewSpot = (spot, imagePayload) => async dispatch => {
     const { address, city, state, country, lat, lng, name, description, price } = spot;
+    const {prevImage, images} = imagePayload;
 
     const res = await csrfFetch('api/spots', {
         method: 'POST',
-        body: JSON.stringify({
-            address,
-            city,
-            state,
-            country,
-            lat,
-            lng,
-            name,
-            description,
-            price
-        })
+        body: JSON.stringify(spot)
     })
 
     const newSpot = res.json();
 
     const idRes = await csrfFetch(`/api/spots/${newSpot.id}`)
+
+    if(prevImage) {
+        const prevImgRes = await csrfFetch(`/api/spots/${newSpot.id}/images`, {
+            method: 'POST',
+            body: {
+                url: prevImage,
+                preview: true
+            }
+        })
+    }
+
+    images.map(async (image) => {
+        const imgRes = await csrfFetch(`/api/spots/${newSpot.id}/images`, {
+            method: 'POST',
+            body: {
+                url: image,
+                preview: false
+            }
+        })
+    })
 
 
     if(res.ok) {
@@ -78,7 +94,7 @@ export const getSpotById = (spotId) => async dispatch => {
 
     if(res.ok) {
         const spotDetails = await res.json()
-        
+
         //dispatch action for a single spot
         dispatch(addOneSpot(spotDetails));
     }

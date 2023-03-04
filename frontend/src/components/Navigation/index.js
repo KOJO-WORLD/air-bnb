@@ -4,21 +4,25 @@ import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 // import * as sessionActions from '../../store/session';
 import './Navigation.css';
+import SpotForm from '../SpotForm/SpotForm';
 
-function Navigation({ isLoaded }){
+function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
-//   const dispatch = useDispatch();
+  //   const dispatch = useDispatch();
 
-//   const logout = (e) => {
-//     e.preventDefault();
-//     dispatch(sessionActions.logout());
-//   };
+  //   const logout = (e) => {
+  //     e.preventDefault();
+  //     dispatch(sessionActions.logout());
+  //   };
 
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
       <li>
         <ProfileButton user={sessionUser} />
+        <NavLink to="/createSpot">
+          Create Spot
+        </NavLink>
         {/* <button onClick={logout}>Log Out</button> */}
       </li>
     );
