@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { createNewSpot } from "../../store/spots";
+import { createNewSpot, updateSpotById } from "../../store/spots";
 import { useHistory, useParams } from "react-router-dom";
 import { getSpotById } from "../../store/spots";
 
@@ -16,7 +16,7 @@ const EditSpotForm = () => {
         // dispatch()
     }, [dispatch, spotId])
 
-    console.log(spotId);
+    // console.log(spotId);
 
     const spot = useSelector(state => state.spots.spot);
 
@@ -75,6 +75,7 @@ const EditSpotForm = () => {
         e.preventDefault();
 
         const payload = {
+            spotId,
             address,
             city,
             state,
@@ -91,10 +92,12 @@ const EditSpotForm = () => {
             images
         }
 
-        const editedSpot = dispatch(createNewSpot(payload, imgPayload))
-        if (editedSpot) {
-            history.push(`/spot/${editedSpot.id}`);
-        }
+        console.log('submit');
+
+        dispatch(updateSpotById(payload, imgPayload))
+
+        history.push(`/spots/${spotId}`);
+
     }
 
     return (

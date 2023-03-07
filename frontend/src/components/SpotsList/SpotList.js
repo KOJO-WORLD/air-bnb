@@ -1,4 +1,4 @@
-import SpotCard from './SpotCard'
+import SpotCard from '../SpotCard/SpotCard'
 import { useSelector, useDispatch } from "react-redux";
 import { getSpots } from '../../store/spots';
 import { useEffect } from 'react';
@@ -8,7 +8,7 @@ function SpotList() {
     const spots = useSelector(state => state.spots);
     const dispatch = useDispatch();
 
-    console.log('checker', spots);
+    // console.log('checker', spots);
 
     useEffect(() => {
         dispatch(getSpots());
