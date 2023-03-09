@@ -51,6 +51,7 @@ export const getReviews = (spotId) => async dispatch => {
     }
 }
 
+// Error with the fetch
 export const getCurrReviews = () => async dispatch => {
     const res = await csrfFetch('api/reviews/current');
 
@@ -61,25 +62,32 @@ export const getCurrReviews = () => async dispatch => {
 }
 
 export const createNewReview = (spotId, rev) => async dispatch => {
-    const res = await csrfFetch(`/api/spots/${spotId}`, {
+    console.log('rev spotId', spotId);
+    const res = await csrfFetch(`/api/spots/${spotId}/reviews`, {
         method: 'POST',
         body: JSON.stringify(rev)
     })
 
+    console.log(rev);
+
     if(res.ok) {
         const review = await res.json();
+        console.log(review);
         dispatch(createReview(review))
     }
 }
 
 export const deleteReviewById = (reviewId) => async dispatch => {
+    console.log('delete hit');
     const res = await csrfFetch(`/api/reviews/${reviewId}`, {
         method: 'DELETE',
     });
 
+    console.log('delete hit 2');
+
     if (res.ok) {
         const message = await res.json();
-        console.log(message);
+        console.log('delete hit 3');
         dispatch(deleteReview(reviewId));
     }
 }
@@ -100,6 +108,8 @@ const reviewReducer = (state = initialState, action) => {
             newState = {...state}
 
             newState.reviews.push(action.review)
+
+            console.log('create reducer');
 
             return newState
         case DELETE:

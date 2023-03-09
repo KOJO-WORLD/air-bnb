@@ -4,11 +4,14 @@ import { NavLink, useHistory, useParams } from "react-router-dom";
 import { deleteSpotById, getSpotById } from "../../store/spots";
 import { getReviews } from "../../store/reviews";
 import ReviewCard from "../ReviewCard/ReviewCard";
+import ReviewForm from "../ReviewForm/ReviewForm";
 
 // ERROR: On Refresh all of the data gets swept away
 const SpotDetails = () => {
     const dispatch = useDispatch();
     const history = useHistory();
+
+    const [modalClass, setModalClass] = useState('hidden');
 
     const { spotId } = useParams()
 
@@ -67,10 +70,14 @@ const SpotDetails = () => {
 
     const onClick = () => {
         // open an alert with the text "Feature coming soon".
+        console.log('hitter1');
+        window.alert('Feature coming soon')
     }
 
     const onDelete = () => {
-        dispatch(deleteSpotById(spotId))
+        // dispatch(deleteSpotById(spotId))
+
+        console.log('deleted');
 
         history.push('/');
     }
@@ -83,11 +90,26 @@ const SpotDetails = () => {
     let reviewSect;
 
     console.log(reviewsLng, authorized);
-    if(reviewsLng === 0 && !authorized) {
+    if (reviewsLng === 0 && !authorized) {
         reviewSect = 'Be the first to post a review!'
     }
 
     // If user is logged in AND viewing a spot they do not own AND they haven't already written a review show post review button
+    let reviewed = false;
+
+    revArr.forEach(rev => {
+        if (sessionUser) {
+            if (rev.Owner.id === sessionUser.id) {
+                reviewed = true;
+            }
+        }
+    });
+
+    const postButtonClass = authorized || reviewed || !sessionUser ? "hidden" : "";
+
+    // const onPost = () => {
+    //     setModalClass('modal')
+    // }
 
     return (
         <div className="spotInfo">
@@ -131,9 +153,14 @@ const SpotDetails = () => {
                     {rating}
                 </div>
                 <div className={reviewClass}>
-                     · {reviewsLng} {reviewStr}
+                    · {reviewsLng} {reviewStr}
                 </div>
-                <button>Post a review</button>
+                <NavLink to="/write-review">
+                    <button className={postButtonClass}>Post a review</button>
+                </NavLink>
+                <div className={modalClass}>
+                    <ReviewForm />
+                </div>
                 {reviewSect}
                 {revArr && revArr.map(review => {
                     // console.log(review.Owner.firstName, review.id, review.review);

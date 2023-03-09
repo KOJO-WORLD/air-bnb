@@ -108,8 +108,10 @@ export const getSpots = () => async dispatch => {
 }
 
 export const getCurrSpots = () => async dispatch => {
-    const res = await csrfFetch('/api/spots/current');
+    console.log('currSpots hit');
 
+    const res = await csrfFetch('/api/spots/current');
+    
     if(res.ok) {
         const currList = await res.json();
         dispatch(loadCurrSpots(currList))

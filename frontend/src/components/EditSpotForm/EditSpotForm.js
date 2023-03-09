@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { createNewSpot, updateSpotById } from "../../store/spots";
+import { updateSpotById } from "../../store/spots";
 import { useHistory, useParams } from "react-router-dom";
 import { getSpotById } from "../../store/spots";
 
@@ -13,36 +13,55 @@ const EditSpotForm = () => {
     useEffect(() => {
         console.log('useEffect used');
         dispatch(getSpotById(spotId));
-        // dispatch()
     }, [dispatch, spotId])
 
     // console.log(spotId);
 
     const spot = useSelector(state => state.spots.spot);
 
+    // console.log(spot && spot);
+
     const spotImgArr = spot && spot.SpotImages
 
     let prev;
 
-    const imgArr = spotImgArr.filter(img => {
+    const imgArr = spotImgArr && spotImgArr.filter(img => {
         if (!img.preview) return img.url;
     });
 
-    spotImgArr.forEach(img => {
+    spotImgArr && spotImgArr.forEach(img => {
         if (img.preview) prev = img.url;
     });
 
+    console.log(spot && spot.address);
+
     const [address, setAddress] = useState(spot && spot.address);
-    const [city, setCity] = useState(spot.city);
-    const [state, setState] = useState(spot.state);
-    const [country, setCountry] = useState(spot.country);
-    const [lat, setLat] = useState(spot.lat);
-    const [lng, setLng] = useState(spot.lng);
-    const [name, setName] = useState(spot.name);
-    const [description, setDescription] = useState(spot.description);
-    const [price, setPrice] = useState(spot.price);
+    console.log('1', address);
+    const [city, setCity] = useState(spot && spot.city);
+    const [state, setState] = useState(spot && spot.state);
+    const [country, setCountry] = useState(spot && spot.country);
+    const [lat, setLat] = useState(spot && spot.lat);
+    const [lng, setLng] = useState(spot && spot.lng);
+    const [name, setName] = useState(spot && spot.name);
+    const [description, setDescription] = useState(spot && spot.description);
+    const [price, setPrice] = useState(spot && spot.price);
     const [prevImage, setPrevImage] = useState('');
     const [images, setImages] = useState(imgArr);
+
+    const checker = {
+        spotId,
+        address,
+        city,
+        state,
+        country,
+        lat,
+        lng,
+        name,
+        description,
+        price
+    }
+
+    // console.log(checker);
 
     const updateAddress = (e) => setAddress(e.target.value);
     const updateCity = (e) => setCity(e.target.value);
@@ -58,17 +77,30 @@ const EditSpotForm = () => {
 
     const imgInputs = []
     for (let i = 0; i < 4; i++) {
+        // console.log(i, imgArr[i]);
 
-        imgInputs.push(
-            <input
-                className="image"
-                type="text"
-                placeholder="Image URL"
-                required
-                value={imgArr[i]}
-                onChange={updateImages}
-            ></input>
-        )
+        if (imgArr && imgArr[i]) {
+            imgInputs.push(
+                <input
+                    className="image"
+                    type="text"
+                    placeholder="Image URL"
+                    required
+                    value={imgArr && imgArr[i].url}
+                    onChange={updateImages}
+                ></input>
+            )
+        } else {
+            imgInputs.push(
+                <input
+                    className="image"
+                    type="text"
+                    placeholder="Image URL"
+                    required
+                    onChange={updateImages}
+                ></input>
+            )
+        }
     }
 
     const handleSubmit = async (e) => {
@@ -97,7 +129,6 @@ const EditSpotForm = () => {
         dispatch(updateSpotById(payload, imgPayload))
 
         history.push(`/spots/${spotId}`);
-
     }
 
     return (
