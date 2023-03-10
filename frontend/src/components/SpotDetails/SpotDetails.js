@@ -24,7 +24,7 @@ const SpotDetails = () => {
         console.log('hit');
     }, [dispatch, spotId])
 
-    const spot = useSelector(state => state.spots.spot);
+    const spot = useSelector(state => state.spots[spotId]);
     const reviews = useSelector(state => state.reviews);
     // console.log('here', reviews);
 
@@ -155,7 +155,7 @@ const SpotDetails = () => {
                 <div className={reviewClass}>
                     · {reviewsLng} {reviewStr}
                 </div>
-                <NavLink to="/write-review">
+                <NavLink to="/write-review" className="link">
                     <button className={postButtonClass}>Post a review</button>
                 </NavLink>
                 <div className={modalClass}>
@@ -168,7 +168,7 @@ const SpotDetails = () => {
                 })}
             </div>
             <button onClick={onDelete} className={userClass}>Delete</button>
-            <NavLink to={`/spots/${spotId}/edit`} className={userClass}>
+            <NavLink to={`/spots/${spotId}/edit`} className={userClass + '-link'}>
                 <button>Edit</button>
             </NavLink>
         </div>

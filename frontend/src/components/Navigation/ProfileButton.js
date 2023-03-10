@@ -41,20 +41,20 @@ function ProfileButton({ user }) {
 
     return (
         <>
-            <button onClick={openMenu} className="profile-icon">
+            <button onClick={openMenu} className="profile-button">
                 <div>
-                    <i className="fas fa-user-circle" />
+                    <i id='user-icon'className="fas fa-user-circle" />
                 </div>
                 <div>
-                    <i class="fa-solid fa-bars" />
+                    <i id='bar-icon' className="fa-solid fa-bars" />
                 </div>
             </button>
-            <ul className={ulClassName} ref={ulRef}>
+            <ul className={ulClassName + ' dropDown'} ref={ulRef}>
                 <li>{user.username}</li>
                 <li>{user.firstName} {user.lastName}</li>
                 <li>{user.email}</li>
                 <li>
-                    <NavLink to='/spots/current'>
+                    <NavLink to='/spots/current' className="link">
                         Manage Spots
                     </NavLink>
                 </li>

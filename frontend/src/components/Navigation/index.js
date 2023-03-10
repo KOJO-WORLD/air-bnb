@@ -19,12 +19,12 @@ function Navigation({ isLoaded }) {
   if (sessionUser) {
     sessionLinks = (
       <div className='right-side'>
-        <span>
-          <NavLink to="/createSpot">
+        <span id='create-span'>
+          <NavLink to="/createSpot" className="create-link">
             Create a new spot
           </NavLink>
         </span>
-        <span>
+        <span className='dropButton'>
           <ProfileButton user={sessionUser} />
         </span>
         {/* <button onClick={logout}>Log Out</button> */}
@@ -42,9 +42,9 @@ function Navigation({ isLoaded }) {
   return (
     <nav className='nav'>
 
-      <div>
-        <NavLink exact to="/">
-          <i class="fa-brands fa-airbnb" autoCapitalize='off'>airbnb</i>
+      <div className='left-side'>
+        <NavLink exact to="/" className="link">
+          <i id="airbnb-logo" className="fa-brands fa-airbnb" autoCapitalize='off'>airbnb</i>
         </NavLink>
       </div>
       <div>

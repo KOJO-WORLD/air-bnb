@@ -16,14 +16,15 @@ function SpotList() {
 
     const spotsArr = Object.values(spots)
 
-    // console.log(spots);
+    console.log(spotsArr);
 
     return (
         <>
             <h1>All Spots</h1>
             <ul className="spot-list">
                 {spotsArr.map(spot => {
-                    return <NavLink key={spot.id} to={`/spots/${spot.id}`}>
+                    console.log(spot.id);
+                    return <NavLink key={spot.id} to={`/spots/${spot.id}`} className="link">
                         <SpotCard key={spot.id} spot={spot} />
                     </NavLink>
                 })}

@@ -27,15 +27,15 @@ const ManageSpots = () => {
     return (
         <div>
             <h1>Manage Spots</h1>
-            <NavLink to="/createSpot" className={spotClass}>Create a New Spot</NavLink>
+            <NavLink to="/createSpot" className={spotClass + '-link'}>Create a New Spot</NavLink>
             <ul className="curr-spots">
                 {spotsArr && spotsArr.map(spot => {
                     return <div>
-                        <NavLink key={spot.id} to={`/spots/${spot.id}`}>
+                        <NavLink key={spot.id} to={`/spots/${spot.id}`} className='link'>
                             <SpotCard key={spot.id} spot={spot} />
                         </NavLink>
                         <button onClick={onDelete} id={spot.id}>Delete</button>
-                        <NavLink to={`/spots/${spot.id}/edit`}>
+                        <NavLink to={`/spots/${spot.id}/edit`} className='link'>
                             <button>Update</button>
                         </NavLink>
                     </div>
