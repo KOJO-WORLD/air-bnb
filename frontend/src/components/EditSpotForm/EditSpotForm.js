@@ -17,7 +17,9 @@ const EditSpotForm = () => {
 
     // console.log(spotId);
 
-    const spot = useSelector(state => state.spots.spot);
+    let spot = useSelector(state => state.spots);
+
+    spot = spot[spotId]
 
     // console.log(spot && spot);
 

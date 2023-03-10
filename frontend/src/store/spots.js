@@ -108,13 +108,11 @@ export const getSpots = () => async dispatch => {
 }
 
 export const getCurrSpots = () => async dispatch => {
-    console.log('currSpots hit');
-
     const res = await csrfFetch('/api/spots/current');
-    
+
     if(res.ok) {
         const currList = await res.json();
-        dispatch(loadCurrSpots(currList))
+        dispatch(loadCurrSpots(currList.Spots))
     }
 }
 
@@ -169,11 +167,15 @@ const spotsReducer = (state = initialState, action) => {
 
             return newState;
         case LOAD_CURR:
-            newState = {...state, 'currSpots': action.list.Spots}
+            // newState = {...state, 'currSpots': action.list.Spots}
+            newState = action.list.reduce((state, spot) => {
+                state[spot.id] = spot
+                return state
+            }, {})
 
             return newState;
         case ADD_ONE:
-            newState = { ...state, 'spot': action.spot };
+            newState = { ...state, [action.spot.id]: action.spot };
 
             return newState;
         case CREATE:

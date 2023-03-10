@@ -18,30 +18,39 @@ function Navigation({ isLoaded }) {
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
-      <li>
-        <ProfileButton user={sessionUser} />
-        <NavLink to="/createSpot">
-          Create Spot
-        </NavLink>
+      <div className='right-side'>
+        <span>
+          <NavLink to="/createSpot">
+            Create a new spot
+          </NavLink>
+        </span>
+        <span>
+          <ProfileButton user={sessionUser} />
+        </span>
         {/* <button onClick={logout}>Log Out</button> */}
-      </li>
+      </div>
     );
   } else {
     sessionLinks = (
-      <li>
+      <div className='right-side'>
         <NavLink to="/login">Log In</NavLink>
         <NavLink to="/signup">Sign Up</NavLink>
-      </li>
+      </div>
     );
   }
 
   return (
-    <ul>
-      <li>
-        <NavLink exact to="/">Home</NavLink>
-      </li>
-      {isLoaded && sessionLinks}
-    </ul>
+    <nav className='nav'>
+
+      <div>
+        <NavLink exact to="/">
+          <i class="fa-brands fa-airbnb" autoCapitalize='off'>airbnb</i>
+        </NavLink>
+      </div>
+      <div>
+        {isLoaded && sessionLinks}
+      </div>
+    </nav>
   );
 }
 

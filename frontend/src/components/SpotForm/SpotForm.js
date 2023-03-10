@@ -70,8 +70,8 @@ const SpotForm = () => {
             <h1>Create a new spot</h1>
             <form onSubmit={handleSubmit}>
                 <section>
-                    <h3>Where's your place located?</h3>
-                    <h4>Guests will only get your exact address once they booked a reservation.</h4>
+                    <h2>Where's your place located?</h2>
+                    <h3>Guests will only get your exact address once they booked a reservation.</h3>
 
                     <label for="Address">Address: </label>
                     <input
@@ -150,8 +150,8 @@ const SpotForm = () => {
                     ></input>
                 </section>
                 <section>
-                    <h3>Create a title for your spot</h3>
-                    <h4>Catch guests' attention with a spot title that highlights what makes your place special.</h4>
+                    <h2>Create a title for your spot</h2>
+                    <h3>Catch guests' attention with a spot title that highlights what makes your place special.</h3>
                     <label for="name">Name: </label>
                     <input
                         name="name"
@@ -164,8 +164,8 @@ const SpotForm = () => {
                     ></input>
                 </section>
                 <section>
-                    <h3>Liven up your spot with photos</h3>
-                    <h4>Submit a link to at least one photo to publish your spot.</h4>
+                    <h2>Liven up your spot with photos</h2>
+                    <h3>Submit a link to at least one photo to publish your spot.</h3>
                     {/* <label for="image">Price: </label> */}
                     <input
                         name="preview-image"
@@ -214,8 +214,8 @@ const SpotForm = () => {
                     ></input>
                 </section>
                 <section>
-                    <h3>Set a base price for your spot</h3>
-                    <h4>Competitive pricing can help your listing stand out and rank higher in search results.</h4>
+                    <h2>Set a base price for your spot</h2>
+                    <h3>Competitive pricing can help your listing stand out and rank higher in search results.</h3>
                     <label for="price">Price: </label>
                     <input
                         name="price"

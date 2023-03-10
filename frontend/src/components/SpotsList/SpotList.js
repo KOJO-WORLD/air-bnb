@@ -20,7 +20,7 @@ function SpotList() {
 
     return (
         <>
-            <h2>All Spots</h2>
+            <h1>All Spots</h1>
             <ul className="spot-list">
                 {spotsArr.map(spot => {
                     return <NavLink key={spot.id} to={`/spots/${spot.id}`}>

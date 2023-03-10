@@ -5,11 +5,9 @@ import { deleteSpotById, getCurrSpots } from "../../store/spots";
 import SpotCard from "../SpotCard/SpotCard";
 
 const ManageSpots = () => {
-    const spots = useSelector(state => state.spots.currSpots);
+    const spots = useSelector(state => state.spots);
     const dispatch = useDispatch();
-    const history = useHistory();
 
-    // console.log('checker', spots);
     useEffect(() => {
         dispatch(getCurrSpots());
     }, [dispatch])
@@ -28,7 +26,7 @@ const ManageSpots = () => {
 
     return (
         <div>
-            <h2>Manage Spots</h2>
+            <h1>Manage Spots</h1>
             <NavLink to="/createSpot" className={spotClass}>Create a New Spot</NavLink>
             <ul className="curr-spots">
                 {spotsArr && spotsArr.map(spot => {
