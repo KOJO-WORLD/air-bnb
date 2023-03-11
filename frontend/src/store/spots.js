@@ -95,6 +95,7 @@ export const createNewSpot = (spot, imagePayload) => async dispatch => {
         const newSpotDetails = await idRes.json();
         // console.log('new spot fixed', newSpotDetails);
         dispatch(createSpot(newSpotDetails))
+        return await newSpotDetails;
     }
 }
 

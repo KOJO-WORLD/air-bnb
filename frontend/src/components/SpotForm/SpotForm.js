@@ -54,7 +54,9 @@ const SpotForm = () => {
         const createdSpot = await dispatch(createNewSpot(payload, imgPayload))
         console.log('created spot', createdSpot);
 
-        if (createdSpot) {
+        // const spotChecker = useGetSpotId();
+
+        if (createdSpot && createdSpot) {
             history.push(`/spots/${createdSpot.id}`);
         }
     }

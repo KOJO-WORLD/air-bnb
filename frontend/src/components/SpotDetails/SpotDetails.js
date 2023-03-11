@@ -76,7 +76,7 @@ const SpotDetails = () => {
     }
 
     const onDelete = () => {
-        // dispatch(deleteSpotById(spotId))
+        dispatch(deleteSpotById(spotId))
 
         console.log('deleted');
 
