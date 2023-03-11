@@ -5,25 +5,30 @@ import { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 
 function SpotList() {
-    const spots = useSelector(state => state.spots);
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        console.log('used please');
+        dispatch(getSpots());
+        console.log('please');
+    }, [dispatch])
+
+    const spots = useSelector(state => state.spots);
+
+    if(spots.spot) delete spots.spot
 
     // console.log('checker', spots);
 
-    useEffect(() => {
-        dispatch(getSpots());
-    }, [dispatch])
+    const spotsArr = spots && Object.values(spots)
 
-    const spotsArr = Object.values(spots)
-
-    console.log(spotsArr);
+    // console.log(spotsArr);
 
     return (
         <>
             <h1>All Spots</h1>
             <ul className="spot-list">
                 {spotsArr.map(spot => {
-                    console.log(spot.id);
+                    // console.log('spot', spot.id);
                     return <NavLink key={spot.id} to={`/spots/${spot.id}`} className="link">
                         <SpotCard key={spot.id} spot={spot} />
                     </NavLink>

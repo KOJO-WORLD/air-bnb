@@ -14,6 +14,8 @@ const ManageSpots = () => {
 
     const spotsArr = spots && Object.values(spots)
 
+    console.log(spotsArr);
+
     const spotClass = spotsArr && spotsArr.length === 0 ? '' : 'hidden';
 
     const onDelete = (e) => {

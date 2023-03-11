@@ -1,4 +1,5 @@
 import { csrfFetch } from "./csrf";
+import { login } from "./session";
 
 const initialState = {}
 
@@ -53,7 +54,7 @@ export const createNewSpot = (spot, imagePayload) => async dispatch => {
     })
 
     const newSpot = await res.json();
-    console.log('new spot', newSpot);
+    // console.log('new spot RAW', newSpot);
 
     const idRes = await csrfFetch(`/api/spots/${newSpot.id}`)
 
@@ -63,7 +64,7 @@ export const createNewSpot = (spot, imagePayload) => async dispatch => {
     }
 
     if (prevImage) {
-        console.log('prev url', prevImage);
+        // console.log('prev url', prevImage);
 
         const prevImgRes = await csrfFetch(`/api/spots/${newSpot.id}/images`, {
             method: 'POST',
@@ -71,7 +72,7 @@ export const createNewSpot = (spot, imagePayload) => async dispatch => {
         })
 
         const prevIm = await prevImgRes.json();
-        console.log('preview', prevIm);
+        // console.log('preview', prevIm);
     }
 
     images.forEach(async (image) => {
@@ -86,13 +87,13 @@ export const createNewSpot = (spot, imagePayload) => async dispatch => {
         })
 
         const img = await imgRes.json();
-        console.log('image', img);
+        // console.log('image', img);
     })
 
 
     if (res.ok) {
         const newSpotDetails = await idRes.json();
-
+        // console.log('new spot fixed', newSpotDetails);
         dispatch(createSpot(newSpotDetails))
     }
 }
@@ -102,6 +103,7 @@ export const getSpots = () => async dispatch => {
 
     if (res.ok) {
         const list = await res.json();
+        console.log("list", list);
         // list will be an object with key of 'Spots' and a value of an array of spots
         dispatch(loadSpots(list))
     }
@@ -121,6 +123,8 @@ export const getSpotById = (spotId) => async dispatch => {
 
     if (res.ok) {
         const spotDetails = await res.json()
+
+        console.log('single', spotDetails);
 
         //dispatch action for a single spot
         dispatch(addOneSpot(spotDetails));
@@ -175,15 +179,31 @@ const spotsReducer = (state = initialState, action) => {
 
             return newState;
         case ADD_ONE:
-            newState = { ...state, [action.spot.id]: action.spot };
+            // newState = { ...state, [action.spot.id]: action.spot };
+            newState = {...state, 'spot': action.spot}
+
+            // console.log('state checker');
+
+            // console.log('add one action is ', action.spot);
+
+            // newState.spots.spot = action.spot
 
             return newState;
         case CREATE:
-            newState = { ...state };
+            // console.log("create tester", state.Spots);
+            newState = {...state, 'spot': action.spot}
 
-            newState.spots.push(action.spot)
+            // console.log('new', newState);
+            // console.log('state', state);
+            // console.log('create action', action.spot);
 
-            newState.spots.spot = action.spot;
+            // if(Object.keys(newState).includes('spot')) delete newState.spots.spot
+
+            // const newSpots = Object.values(newState.spots)
+
+            // newSpots.push(action.spot)
+
+            // newState = {...newSpots}
 
             return newState;
         case UPDATE:

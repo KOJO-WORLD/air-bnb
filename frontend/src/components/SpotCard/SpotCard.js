@@ -1,5 +1,5 @@
 // import { NavLink } from "react-router-dom";
-// import './SpotCard.css'
+import './SpotCard.css'
 
 const SpotCard = ({ spot: { name, avgRating, price, previewImage } }) => {
     // console.log(name);

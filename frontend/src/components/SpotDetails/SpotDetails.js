@@ -21,12 +21,13 @@ const SpotDetails = () => {
 
     useEffect(() => {
         dispatch(getReviews(spotId));
-        console.log('hit');
+        console.log('review useeffect hit');
     }, [dispatch, spotId])
 
-    const spot = useSelector(state => state.spots[spotId]);
+    const spot = useSelector(state => state.spots.spot);
+    console.log('tester', spot && spot);
     const reviews = useSelector(state => state.reviews);
-    // console.log('here', reviews);
+    console.log('here', reviews);
 
     const revArr = reviews && Object.values(reviews);
     const reviewsLng = revArr && revArr.length;
@@ -111,6 +112,8 @@ const SpotDetails = () => {
     //     setModalClass('modal')
     // }
 
+    console.log(spot && spot);
+
     return (
         <div className="spotInfo">
             <h1>
@@ -120,7 +123,7 @@ const SpotDetails = () => {
                 Location: {spot && spot.city}, {spot && spot.state}, {spot && spot.country}
             </h3>
             <div className="spotImages">
-                {spot && spotImgArr.map((spotImg) => {
+                {spotImgArr && spotImgArr.map((spotImg) => {
                     return <div>
                         <img src={spotImg.url} alt='spot pic'></img>
                     </div>

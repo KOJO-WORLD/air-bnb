@@ -53,9 +53,9 @@ const SpotForm = () => {
 
         const createdSpot = await dispatch(createNewSpot(payload, imgPayload))
         // console.log(imgPayload);
-        console.log(createdSpot);
+        console.log('created spot', createdSpot);
 
-        // const spot = useSelector(state => state.spots.spot);
+        // const spot = useSelector(state => state.spots);
 
         // const spot =  createdSpot;
 

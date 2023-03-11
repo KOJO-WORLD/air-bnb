@@ -15,13 +15,11 @@ const EditSpotForm = () => {
         dispatch(getSpotById(spotId));
     }, [dispatch, spotId])
 
-    // console.log(spotId);
+    console.log('id', spotId);
 
-    let spot = useSelector(state => state.spots);
+    let spot = useSelector(state => state.spots.spot);
 
-    spot = spot[spotId]
-
-    // console.log(spot && spot);
+    console.log('spot to edit', spot && spot);
 
     const spotImgArr = spot && spot.SpotImages
 
@@ -35,10 +33,9 @@ const EditSpotForm = () => {
         if (img.preview) prev = img.url;
     });
 
-    console.log(spot && spot.address);
+    console.log('spot address', spot && spot.address);
 
     const [address, setAddress] = useState(spot && spot.address);
-    console.log('1', address);
     const [city, setCity] = useState(spot && spot.city);
     const [state, setState] = useState(spot && spot.state);
     const [country, setCountry] = useState(spot && spot.country);
@@ -49,6 +46,8 @@ const EditSpotForm = () => {
     const [price, setPrice] = useState(spot && spot.price);
     const [prevImage, setPrevImage] = useState('');
     const [images, setImages] = useState(imgArr);
+
+    console.log('state address', address);
 
     const checker = {
         spotId,
