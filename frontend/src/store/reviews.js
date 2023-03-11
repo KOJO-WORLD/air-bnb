@@ -99,23 +99,27 @@ const reviewReducer = (state = initialState, action) => {
         case LOAD:
             newState = {...state, ...action.list.Reviews}
 
+            newState = action.list.Reviews.reduce((state, review) => {
+                state[review.id] = review
+                return state
+            }, {})
+
             return newState;
         case LOAD_CURR:
             newState = {...state, 'currReviews': action.list.Reviews}
 
             return newState;
         case CREATE:
-            newState = {...state}
-
-            newState.reviews.push(action.review)
-
-            console.log('create reducer');
+            newState = {...state, [action.review.id]: action.review}
 
             return newState
         case DELETE:
             newState = state;
-            newState.reviews = Object.values(state.reviews).filter(review => review.id !== action.reviewId)
-            console.log(newState);
+            // newState.reviews = Object.values(state.reviews).filter(review => review.id !== action.reviewId)
+            // console.log(newState);
+
+            delete newState[action.reviewId]
+
             return newState;
         default:
             return state;

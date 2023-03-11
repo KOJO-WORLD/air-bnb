@@ -171,7 +171,6 @@ const spotsReducer = (state = initialState, action) => {
 
             return newState;
         case LOAD_CURR:
-            // newState = {...state, 'currSpots': action.list.Spots}
             newState = action.list.reduce((state, spot) => {
                 state[spot.id] = spot
                 return state
@@ -193,18 +192,6 @@ const spotsReducer = (state = initialState, action) => {
             // console.log("create tester", state.Spots);
             newState = {...state, 'spot': action.spot}
 
-            // console.log('new', newState);
-            // console.log('state', state);
-            // console.log('create action', action.spot);
-
-            // if(Object.keys(newState).includes('spot')) delete newState.spots.spot
-
-            // const newSpots = Object.values(newState.spots)
-
-            // newSpots.push(action.spot)
-
-            // newState = {...newSpots}
-
             return newState;
         case UPDATE:
             newState = { ...state };
@@ -218,7 +205,7 @@ const spotsReducer = (state = initialState, action) => {
             return newState;
         case DELETE:
             newState = Object.values(state.spots).filter(spot => spot.id !== action.spotId)
-            console.log(newState);
+            // console.log(newState);
             return newState;
         default:
             return state;

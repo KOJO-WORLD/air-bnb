@@ -52,13 +52,7 @@ const SpotForm = () => {
         }
 
         const createdSpot = await dispatch(createNewSpot(payload, imgPayload))
-        // console.log(imgPayload);
         console.log('created spot', createdSpot);
-
-        // const spot = useSelector(state => state.spots);
-
-        // const spot =  createdSpot;
-
 
         if (createdSpot) {
             history.push(`/spots/${createdSpot.id}`);

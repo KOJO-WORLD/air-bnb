@@ -26,7 +26,7 @@ const SpotDetails = () => {
 
     const spot = useSelector(state => state.spots.spot);
     console.log('tester', spot && spot);
-    const reviews = useSelector(state => state.reviews);
+    const reviews = useSelector(state => state?.reviews);
     console.log('here', reviews);
 
     const revArr = reviews && Object.values(reviews);
@@ -99,14 +99,15 @@ const SpotDetails = () => {
     let reviewed = false;
 
     revArr.forEach(rev => {
-        if (sessionUser) {
-            if (rev.Owner.id === sessionUser.id) {
+        if (sessionUser && rev) {
+            if (rev.Owner?.id === sessionUser?.id) {
                 reviewed = true;
             }
         }
     });
 
     const postButtonClass = authorized || reviewed || !sessionUser ? "hidden" : "";
+    const editButtonClass = authorized ? "" : "hidden";
 
     // const onPost = () => {
     //     setModalClass('modal')
@@ -172,7 +173,7 @@ const SpotDetails = () => {
             </div>
             <button onClick={onDelete} className={userClass}>Delete</button>
             <NavLink to={`/spots/${spotId}/edit`} className={userClass + '-link'}>
-                <button>Edit</button>
+                <button className={editButtonClass}>Edit</button>
             </NavLink>
         </div>
 

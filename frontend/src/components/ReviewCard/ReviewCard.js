@@ -8,7 +8,7 @@ const ReviewCard = ({ review }) => {
     const history = useHistory();
 
     const sessionUser = useSelector(state => state.session.user);
-    const ownerId = review && review.Owner.id
+    const ownerId = review && review.Owner?.id
     let authorized;
 
     if (sessionUser) {
@@ -36,7 +36,7 @@ const ReviewCard = ({ review }) => {
     return (
         <div>
             <div>
-                <h5>{review.Owner.firstName}</h5>
+                <h5>{review.Owner?.firstName}</h5>
                 {/* month and year */}
                 <p>{review.review}</p>
             </div>

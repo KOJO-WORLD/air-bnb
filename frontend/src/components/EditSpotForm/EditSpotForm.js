@@ -47,6 +47,20 @@ const EditSpotForm = () => {
     const [prevImage, setPrevImage] = useState('');
     const [images, setImages] = useState(imgArr);
 
+    useEffect(() => {
+        if(spot) {
+            setAddress(spot.address);
+            setCity(spot.city);
+            setState(spot.state);
+            setCountry(spot.country);
+            setLat(spot.lat);
+            setLng(spot.lng);
+            setName(spot.name);
+            setDescription(spot.description);
+            setPrice(spot.price);
+        }
+    }, [spot])
+
     console.log('state address', address);
 
     const checker = {
@@ -270,7 +284,7 @@ const EditSpotForm = () => {
                         max={999999999}
                         placeholder="Price per night (USD)"
                         required
-                        // value={any}
+                        value={price}
                         onChange={updatePrice}
                     ></input>
                 </section>
