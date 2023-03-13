@@ -7,6 +7,21 @@ const ReviewCard = ({ review }) => {
     const dispatch = useDispatch();
     const history = useHistory();
 
+    const MONTHS = {
+        '01': 'January',
+        '02': 'February',
+        '03': 'March',
+        '04': 'April',
+        '05': 'May',
+        '06': 'June',
+        '07': 'July',
+        '08': 'August',
+        '09': 'September',
+        '10': 'October',
+        '11': 'November',
+        '12': 'December'
+    }
+
     const sessionUser = useSelector(state => state.session.user);
     const ownerId = review && review.Owner?.id
     let authorized;
@@ -34,12 +49,22 @@ const ReviewCard = ({ review }) => {
     //     dispatch(getReviews())
     // }, [dispatch, getReviews])
 
+    const date = review.createdAt.split('-').slice(0, 2);
+
+    const month = MONTHS[date[1]];
+
+    const year = date[0]
+
+    console.log(month, year);
+
     return (
         <div>
             <div>
-                <h5>{review.Owner?.firstName}</h5>
-                {/* month and year */}
-                <p>{review.review}</p>
+                <h3>{review.Owner?.firstName}</h3>
+                <div>
+                    <h4>{month} {year}</h4>
+                    <p>{review.review}</p>
+                </div>
             </div>
             <div className={reviewClass}>
                 <button onClick={onDelete}>Delete</button>

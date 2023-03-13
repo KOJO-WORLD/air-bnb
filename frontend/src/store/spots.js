@@ -104,7 +104,7 @@ export const getSpots = () => async dispatch => {
 
     if (res.ok) {
         const list = await res.json();
-        console.log("list", list);
+        // console.log("list", list);
         // list will be an object with key of 'Spots' and a value of an array of spots
         dispatch(loadSpots(list))
     }
@@ -125,7 +125,7 @@ export const getSpotById = (spotId) => async dispatch => {
     if (res.ok) {
         const spotDetails = await res.json()
 
-        console.log('single', spotDetails);
+        // console.log('single', spotDetails);
 
         //dispatch action for a single spot
         dispatch(addOneSpot(spotDetails));
@@ -140,12 +140,12 @@ export const updateSpotById = (spot, imagePayload) => async dispath => {
         body: JSON.stringify({ address, city, state, country, lat, lng, name, description, price })
     })
 
-    console.log('hit');
+    // console.log('hit');
 
     if (res.ok) {
         const updatedSpot = await res.json()
 
-        console.log('update', updatedSpot);
+        // console.log('update', updatedSpot);
 
         dispath(updateSpot(updatedSpot))
     }
@@ -158,7 +158,7 @@ export const deleteSpotById = (spotId) => async dispatch => {
 
     if (res.ok) {
         const message = res.json();
-        console.log(message);
+        // console.log(message);
         dispatch(deleteSpot(spotId));
     }
 }

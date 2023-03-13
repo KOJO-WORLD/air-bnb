@@ -9,9 +9,9 @@ function SpotList() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        console.log('used please');
+        // console.log('used please');
         dispatch(getSpots());
-        console.log('please');
+        // console.log('please');
     }, [dispatch])
 
     const spots = useSelector(state => state.spots);
