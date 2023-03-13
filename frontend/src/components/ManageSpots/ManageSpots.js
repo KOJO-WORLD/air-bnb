@@ -27,6 +27,10 @@ const ManageSpots = () => {
         // history.push('/');
     }
 
+    useEffect(() => {
+        dispatch(getCurrSpots());
+    }, [onDelete])
+
     return (
         <div>
             <h1>Manage Spots</h1>
