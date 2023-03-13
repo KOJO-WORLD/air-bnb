@@ -2,16 +2,160 @@
     display: none;
 }
 
-.modal {
-    /* display: none; Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-  }
+.spotInfo {
+    margin-left: 75px;
+}
+
+.name-location {
+    padding-left: 4.5px;
+    /* border: 1px solid black; */
+}
+
+.spotImage {
+    width: 98%;
+    height: 98%;
+    margin: 4.5px;
+}
+
+.spotImages {
+    display: grid;
+    grid-template: 1fr/1fr 1fr;
+    grid-template-areas:
+        "main others";
+    /* border: 1px solid black; */
+    margin-right: 75px;
+    width: 1250px;
+    height: 500px;
+}
+
+.main-image {
+    grid-area: main;
+    display: flex;
+    /* border: 1px solid black; */
+    /* align-self: stretch;
+    justify-self: stretch; */
+}
+
+.other-images {
+    /* border: 1px solid black; */
+    grid-area: others;
+    display: grid;
+    grid-template: 1fr 1fr/1fr 1fr;
+    grid-template-areas:
+        "2nd 3rd"
+        "4th 5th";
+}
+
+.review-summary {
+    position: absolute;
+    top: 725px;
+    right: 90px;
+    border: 2px solid black;
+    border-radius: 10px;
+    display: grid;
+    grid-template: 60px 40px/1fr;
+    grid-template-areas:
+    "info"
+    "reserve";
+    width: 350px;
+    height: 100px;
+    z-index: 1;
+}
+
+.upper {
+    grid-area: info;
+    display: grid;
+    grid-template: 1fr/1fr 1fr;
+    grid-template-areas:
+    "price rating";
+}
+
+#separater {
+    margin-left: 3px;
+    margin-right: 3px;
+    font-weight: bolder;
+}
+
+.lower {
+    grid-area: reserve;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#reserve-button {
+    height: 35px;
+    width: 150px;
+    color: white;
+    background-color: #FF5A5F;
+    border: 1px solid black;
+    border-radius: 10px;
+    font-size: 15px;
+    box-shadow: 2px 2px 5px black;
+    margin-bottom: 15px;
+}
+
+.callout {
+    /* border: 1px solid black; */
+    grid-area: price;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#price {
+    font-weight: bold;
+}
+
+#night {
+    font-size: 15px;
+}
+
+.rating-info {
+    /* border: 1px solid black; */
+    grid-area: rating;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+}
+
+#review-header {
+    /* border: 1px solid black; */
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 24px;
+    height: 25px;
+    width: 200px;
+}
+
+#header-star {
+    font-size: 20px;
+}
+
+.fa-star {
+    font-size: 15px;
+}
+
+.description {
+    width: 950px;
+    height: 300px;
+}
+
+#delete-button {
+    border: 1px solid black;
+    background-color: #FF5A5F;
+    color: white;
+    margin: 2px;
+    border-radius: 15px 15px 15px 15px;
+    height: 25px;
+}
+
+#update-button {
+    border: 1px solid black;
+    background-color: #999999;
+    color: white;
+    border-radius: 15px 15px 15px 15px;
+    height: 25px;
+}

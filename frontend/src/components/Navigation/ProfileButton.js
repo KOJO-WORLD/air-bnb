@@ -53,7 +53,7 @@ function ProfileButton({ user }) {
                     <li className="info">Hello, {user.firstName} {user.lastName} ({user.username})</li>
                     {/* <li>{user.username}</li> */}
                     <li className="info">{user.email}</li>
-                    <li id="divier">
+                    <li id="divider">
                         <i>——————————————</i>
                     </li>
                     <li className="info">
@@ -61,7 +61,7 @@ function ProfileButton({ user }) {
                             Manage Spots
                         </NavLink>
                     </li>
-                    <li id="divier">
+                    <li id="divider">
                         <i>——————————————</i>
                     </li>
                     <li>

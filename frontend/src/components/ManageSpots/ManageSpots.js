@@ -30,7 +30,11 @@ const ManageSpots = () => {
     return (
         <div>
             <h1>Manage Spots</h1>
-            <NavLink to="/createSpot" className={spotClass + '-link'}>Create a New Spot</NavLink>
+            <NavLink to="/createSpot" className={spotClass + '-link' + ' link'}>
+                <button id="create-button">
+                    Create a Spot
+                </button>
+            </NavLink>
             <div id="list">
                 {spotsArr && spotsArr.map(spot => {
                     return <div id="spotLink">

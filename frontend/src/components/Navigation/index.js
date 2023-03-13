@@ -25,7 +25,7 @@ function Navigation({ isLoaded }) {
             buttonText="Create a spot"
             modalComponent={<SpotForm />}
           /> */}
-          <NavLink to="/createSpot" className="create-link">
+          <NavLink to="/createSpot" className="create-link link">
             Create a new spot
           </NavLink>
         </span>
@@ -38,8 +38,8 @@ function Navigation({ isLoaded }) {
   } else {
     sessionLinks = (
       <div className='right-side'>
-        <NavLink to="/login">Log In</NavLink>
-        <NavLink to="/signup">Sign Up</NavLink>
+        <NavLink to="/login" className="link">Log In</NavLink>
+        <NavLink to="/signup" className="link">Sign Up</NavLink>
       </div>
     );
   }

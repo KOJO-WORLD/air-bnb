@@ -19,6 +19,10 @@ function App() {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
+  useEffect(() => {
+    document.title = 'Airbnb';
+  }, []);
+
   return (
     <>
       <Navigation isLoaded={isLoaded} />

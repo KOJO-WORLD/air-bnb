@@ -5,6 +5,7 @@ import { deleteSpotById, getSpotById } from "../../store/spots";
 import { getReviews } from "../../store/reviews";
 import ReviewCard from "../ReviewCard/ReviewCard";
 import ReviewForm from "../ReviewForm/ReviewForm";
+import "./SpotDetails.css";
 
 // ERROR: On Refresh all of the data gets swept away
 const SpotDetails = () => {
@@ -21,13 +22,13 @@ const SpotDetails = () => {
 
     useEffect(() => {
         dispatch(getReviews(spotId));
-        console.log('review useeffect hit');
+        // console.log('review useeffect hit');
     }, [dispatch, spotId])
 
     const spot = useSelector(state => state.spots.spot);
-    console.log('tester', spot && spot);
+    // console.log('tester', spot && spot);
     const reviews = useSelector(state => state?.reviews);
-    console.log('here', reviews);
+    // console.log('here', reviews);
 
     const revArr = reviews && Object.values(reviews);
     const reviewsLng = revArr && revArr.length;
@@ -36,12 +37,12 @@ const SpotDetails = () => {
 
     if (reviewsLng > 1) {
         reviewStr = 'reviews'
-        reviewClass = 'visible'
+        reviewClass = ' visible'
     } else if (reviewsLng === 1) {
         reviewStr = 'review'
-        reviewClass = 'visible'
+        reviewClass = ' visible'
     } else {
-        reviewClass = 'hidden'
+        reviewClass = ' hidden'
     }
 
     // Probably do if spot.owner = sessionUser set auth to true and show delete/edit button
@@ -71,14 +72,14 @@ const SpotDetails = () => {
 
     const onClick = () => {
         // open an alert with the text "Feature coming soon".
-        console.log('hitter1');
+        // console.log('hitter1');
         window.alert('Feature coming soon')
     }
 
     const onDelete = () => {
         dispatch(deleteSpotById(spotId))
 
-        console.log('deleted');
+        // console.log('deleted');
 
         history.push('/');
     }
@@ -90,7 +91,7 @@ const SpotDetails = () => {
     // const authorized = "delete-button" + (auth ? "" : " hidden");
     let reviewSect;
 
-    console.log(reviewsLng, authorized);
+    // console.log(reviewsLng, authorized);
     if (reviewsLng === 0 && !authorized) {
         reviewSect = 'Be the first to post a review!'
     }
@@ -113,54 +114,82 @@ const SpotDetails = () => {
     //     setModalClass('modal')
     // }
 
-    console.log(spot && spot);
+    // console.log(spot && spot);
+
+    const OgImgEleArr = spotImgArr && spotImgArr.map((spotImg, ind) => {
+        return <div>
+            <img src={spotImg.url} alt='spot pic' id={ind} className='spotImage'></img>
+        </div>
+    })
+
+    // console.log("whole", OgImgEleArr);
+
+    const mainImg = OgImgEleArr && OgImgEleArr[0];
+
+    // console.log("preview", mainImg);
+
+
+    const imgEleArr = OgImgEleArr && OgImgEleArr.slice(1)
+
+    // console.log("the rest", imgEleArr);
 
     return (
         <div className="spotInfo">
-            <h1>
-                {spot && spot.name}
-            </h1>
-            <h3>
-                Location: {spot && spot.city}, {spot && spot.state}, {spot && spot.country}
-            </h3>
-            <div className="spotImages">
-                {spotImgArr && spotImgArr.map((spotImg) => {
-                    return <div>
-                        <img src={spotImg.url} alt='spot pic'></img>
-                    </div>
-                })}
+            <div className="name-location">
+                <h1>
+                    {spot && spot.name}
+                </h1>
+                <h2>
+                    Location: {spot && spot.city}, {spot && spot.state}, {spot && spot.country}
+                </h2>
+            </div>
+            <div className="spotImages" id="checker">
+                <div className="main-image">
+                    {mainImg}
+                </div>
+                <div className="other-images">
+                    {imgEleArr}
+                </div>
             </div>
             <div className="review-summary">
-                <div className="callout">
-                    <p>${spot && spot.price}/Night</p>
-                    <button onClick={onClick}>Reserve</button>
+                <div className="upper">
+                    <div className="callout">
+                        <p id="price">${spot && spot.price}</p>
+                        <p id="night">/Night</p>
+                    </div>
+                    <div className="rating-info">
+                        <div>
+                            <i class="fa-solid fa-star"></i> {rating}
+                        </div>
+                        <p id="separater">  ·  </p>
+                        <div className={reviewClass}>
+                            {/* number of ratings */}
+                            {reviewsLng} {reviewStr}
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    {/* star symbol goes here */}
-                    {rating}
-                </div>
-                ·
-                <div className={reviewClass}>
-                    {/* number of ratings */}
-                    {reviewsLng} {reviewStr}
+                <div className="lower">
+                    <button onClick={onClick} id="reserve-button">Reserve</button>
                 </div>
             </div>
-            <h4>Hosted by: {spot && spot.Owner.firstName} {spot && spot.Owner.lastName}</h4>
+            <h3>Hosted by: {spot && spot.Owner.firstName} {spot && spot.Owner.lastName}</h3>
             <div className="description">
                 <p>
                     {spot && spot.description}
                 </p>
             </div>
             <div className="reviews">
-                <div>
-                    {/* star symbol goes here */}
-                    {rating}
-                </div>
-                <div className={reviewClass}>
-                    · {reviewsLng} {reviewStr}
+                <div id="review-header">
+                    <div>
+                        <i class="fa-solid fa-star" id="header-star"></i> {rating}
+                    </div>
+                    <p id="separater">·</p>
+                    <div className={reviewClass}>
+                        {reviewsLng} {reviewStr}
+                    </div>
                 </div>
                 <NavLink to="/write-review" className="link">
-                    <button className={postButtonClass}>Post a review</button>
+                    <button className={postButtonClass + reviewClass}>Post a review</button>
                 </NavLink>
                 <div className={modalClass}>
                     <ReviewForm />
@@ -171,9 +200,9 @@ const SpotDetails = () => {
                     return <ReviewCard key={review.id} review={review} />
                 })}
             </div>
-            <button onClick={onDelete} className={userClass}>Delete</button>
+            <button onClick={onDelete} className={userClass} id="delete-button">Delete</button>
             <NavLink to={`/spots/${spotId}/edit`} className={userClass + '-link'}>
-                <button className={editButtonClass}>Edit</button>
+                <button className={editButtonClass} id="update-button">Update</button>
             </NavLink>
         </div>
 

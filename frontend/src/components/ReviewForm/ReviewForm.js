@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { createNewReview } from "../../store/reviews";
+import './ReviewForm.css'
 
 const ReviewForm = () => {
     const dispatch = useDispatch();
@@ -17,7 +18,7 @@ const ReviewForm = () => {
     const updateStars = (e) => setStars(e.target.value);
 
     useEffect(() => {
-        if(review.length >= 10)setSubmitClass('');
+        if (review.length >= 10) setSubmitClass('');
         else setSubmitClass('hidden');
     }, [review])
 
@@ -39,18 +40,21 @@ const ReviewForm = () => {
     }
 
     return (
-        <div>
+        <div id="form">
             <form onSubmit={onSubmit}>
                 <h2>How was your Stay?</h2>
-                <label
-                for="stars"
-                >Stars:</label>
-                <input name="stars" type='number' onChange={updateStars} max={5} min={1}></input>
+                <div>
+                    <label
+                        for="stars"
+                    >Stars: </label>
+                    <input id="star-input" name="stars" type='number' onChange={updateStars} max={5} min={1}></input>
+                </div>
+                {/* <hr class="solid"></hr> */}
                 <textarea
-                placeholder='Leave your review here...'
-                onChange={updateReview}
+                    placeholder='Leave your review here...'
+                    onChange={updateReview}
                 ></textarea>
-                <button className={submitClass}>Submit Review</button>
+                <button className={submitClass} id="submit">Submit Review</button>
             </form>
         </div>
     )

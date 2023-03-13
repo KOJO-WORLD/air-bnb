@@ -6,9 +6,9 @@
     list-style-type: none;
 }
 
-.dropDown-div {
+/* .dropDown-div {
     border: 1px solid black;
-}
+} */
 
 #log-out-button {
     border: 1px solid #CCCCCC;
@@ -33,9 +33,26 @@ span {
 }
 
 .dropDown {
+    margin-top: 15px;
+    border: 1px solid black;
     grid-area: dropDown;
     position: absolute;
     right: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 7;
+    background-color: white;
+    padding-left: 0px;
+    width: 350px;
+}
+
+.dropButton {
+    z-index: 3;
+}
+
+.nav {
+    z-index: 2;
 }
 
 .create {
@@ -55,7 +72,7 @@ span {
     "blank dropDown";
     justify-items: center;
     align-items: center;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     width: 350px;
 }
 
@@ -77,10 +94,10 @@ span {
     color:black
 }
 
-#create-span {
-    /* width: 145px; */
+/* #create-span {
+    width: 145px;
     border: 1px solid #CCCCCC;
-}
+} */
 
 #airbnb-logo {
     font-size: 30px;
