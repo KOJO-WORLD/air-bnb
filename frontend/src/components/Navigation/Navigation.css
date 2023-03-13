@@ -2,6 +2,20 @@
     display: none;
 }
 
+.dropDown li {
+    list-style-type: none;
+}
+
+.dropDown-div {
+    border: 1px solid black;
+}
+
+#log-out-button {
+    border: 1px solid #CCCCCC;
+    background-color: white;
+    color:black
+}
+
 nav {
     position: sticky;
     display: flex;
@@ -20,6 +34,8 @@ span {
 
 .dropDown {
     grid-area: dropDown;
+    position: absolute;
+    right: 50px;
 }
 
 .create {
@@ -53,10 +69,12 @@ span {
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    border: 1px solid #CCCCCC;
     border-radius: 20px 20px 20px 20px;
     width: 75px;
     height: 50px;
+    border: 1px solid #CCCCCC;
+    background-color: white;
+    color:black
 }
 
 #create-span {

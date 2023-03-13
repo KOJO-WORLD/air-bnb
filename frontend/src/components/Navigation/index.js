@@ -5,6 +5,7 @@ import ProfileButton from './ProfileButton';
 // import * as sessionActions from '../../store/session';
 import './Navigation.css';
 import SpotForm from '../SpotForm/SpotForm';
+import OpenModalButton from './OpenModalButton';
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
@@ -20,6 +21,10 @@ function Navigation({ isLoaded }) {
     sessionLinks = (
       <div className='right-side'>
         <span id='create-span'>
+          {/* <OpenModalButton
+            buttonText="Create a spot"
+            modalComponent={<SpotForm />}
+          /> */}
           <NavLink to="/createSpot" className="create-link">
             Create a new spot
           </NavLink>

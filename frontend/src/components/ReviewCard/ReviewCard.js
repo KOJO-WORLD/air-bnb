@@ -25,6 +25,7 @@ const ReviewCard = ({ review }) => {
 
     const onDelete = () => {
         dispatch(deleteReviewById(review.id));
+        dispatch(getReviews(review.spotId));
 
         history.push(`/spots/${review.spotId}`);
     }

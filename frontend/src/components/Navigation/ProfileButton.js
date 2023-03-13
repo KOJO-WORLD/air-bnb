@@ -4,7 +4,6 @@ import './Navigation.css';
 import * as sessionActions from '../../store/session';
 import { NavLink } from "react-router-dom";
 
-
 function ProfileButton({ user }) {
     const dispatch = useDispatch();
     const [showMenu, setShowMenu] = useState(false);
@@ -43,25 +42,33 @@ function ProfileButton({ user }) {
         <>
             <button onClick={openMenu} className="profile-button">
                 <div>
-                    <i id='user-icon'className="fas fa-user-circle" />
+                    <i id='user-icon' className="fas fa-user-circle" />
                 </div>
                 <div>
                     <i id='bar-icon' className="fa-solid fa-bars" />
                 </div>
             </button>
-            <ul className={ulClassName + ' dropDown'} ref={ulRef}>
-                <li>{user.username}</li>
-                <li>{user.firstName} {user.lastName}</li>
-                <li>{user.email}</li>
-                <li>
-                    <NavLink to='/spots/current' className="link">
-                        Manage Spots
-                    </NavLink>
-                </li>
-                <li>
-                    <button onClick={logout}>Log Out</button>
-                </li>
-            </ul>
+            <div className={ulClassName + ' dropDown' + " dropDrown-div"} ref={ulRef}>
+                <ul>
+                    <li className="info">Hello, {user.firstName} {user.lastName} ({user.username})</li>
+                    {/* <li>{user.username}</li> */}
+                    <li className="info">{user.email}</li>
+                    <li id="divier">
+                        <i>——————————————</i>
+                    </li>
+                    <li className="info">
+                        <NavLink to='/spots/current' className="link">
+                            Manage Spots
+                        </NavLink>
+                    </li>
+                    <li id="divier">
+                        <i>——————————————</i>
+                    </li>
+                    <li>
+                        <button onClick={logout} id='log-out-button'>Log Out</button>
+                    </li>
+                </ul>
+            </div>
         </>
     );
 }

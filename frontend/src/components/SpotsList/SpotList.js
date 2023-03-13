@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getSpots } from '../../store/spots';
 import { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
+import './SpotList.css'
 
 function SpotList() {
     const dispatch = useDispatch();
@@ -26,14 +27,13 @@ function SpotList() {
     return (
         <>
             <h1>All Spots</h1>
-            <ul className="spot-list">
+            <div id="list">
                 {spotsArr.map(spot => {
-                    // console.log('spot', spot.id);
-                    return <NavLink key={spot.id} to={`/spots/${spot.id}`} className="link">
+                    return <NavLink key={spot.id} to={`/spots/${spot.id}`} className="link spot-link" id="spotLink">
                         <SpotCard key={spot.id} spot={spot} />
                     </NavLink>
                 })}
-            </ul>
+            </div>
         </>
     )
 }
