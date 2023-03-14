@@ -94,6 +94,7 @@ const SpotDetails = () => {
     // console.log(reviewsLng, authorized);
     if (reviewsLng === 0 && !authorized) {
         reviewSect = 'Be the first to post a review!'
+        reviewClass = ' visible';
     }
 
     // If user is logged in AND viewing a spot they do not own AND they haven't already written a review show post review button
