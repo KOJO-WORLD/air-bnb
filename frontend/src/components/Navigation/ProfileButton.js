@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { useDispatch } from 'react-redux';
 import './Navigation.css';
 import * as sessionActions from '../../store/session';
-
+import { NavLink } from "react-router-dom";
 
 function ProfileButton({ user }) {
     const dispatch = useDispatch();
@@ -10,11 +10,11 @@ function ProfileButton({ user }) {
     const ulRef = useRef();
 
     const openMenu = () => {
-        console.log('clicked!');
-        console.log('old menu', showMenu);
+        // console.log('clicked!');
+        // console.log('old menu', showMenu);
         if (showMenu) return;
         setShowMenu(true);
-        console.log('new menu', showMenu);
+        // console.log('new menu', showMenu);
     };
 
     const logout = (e) => {
@@ -40,17 +40,35 @@ function ProfileButton({ user }) {
 
     return (
         <>
-            <button onClick={openMenu}>
-                <i className="fas fa-user-circle" />
+            <button onClick={openMenu} className="profile-button">
+                <div>
+                    <i id='user-icon' className="fas fa-user-circle" />
+                </div>
+                <div>
+                    <i id='bar-icon' className="fa-solid fa-bars" />
+                </div>
             </button>
-            <ul className={ulClassName} ref={ulRef}>
-                <li>{user.username}</li>
-                <li>{user.firstName} {user.lastName}</li>
-                <li>{user.email}</li>
-                <li>
-                    <button onClick={logout}>Log Out</button>
-                </li>
-            </ul>
+            <div className={ulClassName + ' dropDown' + " dropDrown-div"} ref={ulRef}>
+                <ul>
+                    <li className="info">Hello, {user.firstName} {user.lastName} ({user.username})</li>
+                    {/* <li>{user.username}</li> */}
+                    <li className="info">{user.email}</li>
+                    <li id="divider">
+                        <i>——————————————</i>
+                    </li>
+                    <li className="info">
+                        <NavLink to='/spots/current' className="link">
+                            Manage Spots
+                        </NavLink>
+                    </li>
+                    <li id="divider">
+                        <i>——————————————</i>
+                    </li>
+                    <li>
+                        <button onClick={logout} id='log-out-button'>Log Out</button>
+                    </li>
+                </ul>
+            </div>
         </>
     );
 }

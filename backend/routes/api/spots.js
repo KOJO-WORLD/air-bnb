@@ -170,15 +170,15 @@ router.get(
             });
 
             spotList.forEach(spot => {
+                let starSum = spot.Reviews.reduce((acc, currVal) => {
+                    return currVal.stars + acc
+                }, 0);
+
+                spot.avgRating = (starSum / (spot.Reviews.length)).toFixed(2)
+
+                delete spot.Reviews
+
                 spot.SpotImages.forEach(image => {
-                    let starSum = spot.Reviews.reduce((acc, currVal) => {
-                        return currVal.stars + acc
-                    }, 0);
-
-                    spot.avgRating = (starSum / (spot.Reviews.length)).toFixed(2)
-
-                    delete spot.Reviews
-
                     if (image.preview) {
                         spot.previewImage = image.url
                     }

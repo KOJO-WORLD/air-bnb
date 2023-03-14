@@ -159,10 +159,12 @@ router.delete(
 
         await currReview.destroy()
 
-        return res.json({
-            "message": "Successfully deleted",
-            "statusCode": 200
-        });
+        // return res.json({
+        //     "message": "Successfully deleted",
+        //     "statusCode": 200
+        // });
+
+        return res.json(currReview)
     }
 )
 
