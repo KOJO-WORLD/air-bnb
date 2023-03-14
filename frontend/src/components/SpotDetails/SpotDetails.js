@@ -111,6 +111,9 @@ const SpotDetails = () => {
     const postButtonClass = authorized || reviewed || !sessionUser ? "hidden" : "";
     const editButtonClass = authorized ? "" : "hidden";
 
+    console.log(authorized, reviewed, !sessionUser)
+    console.log(postButtonClass, reviewClass);
+
     // const onPost = () => {
     //     setModalClass('modal')
     // }
