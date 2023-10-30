@@ -11,11 +11,8 @@ function ProfileButton({ user }) {
     const history = useHistory();
 
     const openMenu = () => {
-        // console.log('clicked!');
-        // console.log('old menu', showMenu);
         if (showMenu) return;
         setShowMenu(true);
-        // console.log('new menu', showMenu);
     };
 
     const logout = (e) => {
@@ -45,10 +42,10 @@ function ProfileButton({ user }) {
         <>
             <button onClick={openMenu} className="profile-button">
                 <div>
-                    <i id='user-icon' className="fas fa-user-circle" />
+                    <i id='bar-icon' className="fa-solid fa-bars" />
                 </div>
                 <div>
-                    <i id='bar-icon' className="fa-solid fa-bars" />
+                    <i id='user-icon' className="fas fa-user-circle" />
                 </div>
             </button>
             <div className={ulClassName + ' dropDown' + " dropDrown-div"} ref={ulRef}>

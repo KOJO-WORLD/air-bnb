@@ -12,3 +12,16 @@ h2 {
 p {
     font-size: 14pt;
 }
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    /* font-family: "Montserrat"; */
+    font-family: "Poppins";
+}
+
+button {
+    font-family: "Poppins";
+    font-size: 18px;
+}
