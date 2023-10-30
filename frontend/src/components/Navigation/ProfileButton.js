@@ -37,37 +37,50 @@ function ProfileButton({ user }) {
     }, [showMenu]);
 
     const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
+    const shadowCl = showMenu ? " shadowCl" : "";
 
     return (
         <>
-            <button onClick={openMenu} className="profile-button">
+            <button onClick={openMenu} className={"profile-button" + shadowCl}>
                 <div>
                     <i id='bar-icon' className="fa-solid fa-bars" />
                 </div>
                 <div>
-                    <i id='user-icon' className="fas fa-user-circle" />
+                    <i id='user-icon' className="fas fa-user-circle fa-xl" />
                 </div>
             </button>
             <div className={ulClassName + ' dropDown' + " dropDrown-div"} ref={ulRef}>
-                <ul>
-                    <li className="info">Hello, {user.firstName} {user.lastName} ({user.username})</li>
-                    {/* <li>{user.username}</li> */}
-                    <li className="info">{user.email}</li>
-                    <li id="divider">
-                        <i>——————————————</i>
+                <div className="signed-menu">
+                    <li className="info menu-buttons login-button">
+                        <div>
+                            Hello, {user.firstName} {user.lastName} ({user.username})
+                        </div>
+                        <div>{user.email}</div>
                     </li>
-                    <li className="info">
+                    <li id="divider">
+                        <hr color="d6d6d6" size="1"></hr>
+                    </li>
+                    <li className="info menu-buttons">
                         <NavLink to='/spots/current' className="link">
                             Manage Spots
                         </NavLink>
                     </li>
+                    {/* <li className="info">
+                        <NavLink to='/spots/current' className="link">
+                            Wishlist
+                        </NavLink>
+                    </li> */}
                     <li id="divider">
-                        <i>——————————————</i>
+                        <hr color="d6d6d6" size="1"></hr>
                     </li>
-                    <li>
-                        <button onClick={logout} id='log-out-button'>Log Out</button>
+                    <li className="signup-button menu-buttons">
+                        {/* Turn this into a modal with all of the appropriate info */}
+                        <button className='about-button'><i class="fa-solid fa-circle-info"> </i> About</button>
                     </li>
-                </ul>
+                    <li className="menu-buttons logout-li">
+                        <button onClick={logout} className="about-button">Log Out</button>
+                    </li>
+                </div>
             </div>
         </>
     );

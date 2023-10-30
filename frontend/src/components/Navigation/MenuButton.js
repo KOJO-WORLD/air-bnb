@@ -37,7 +37,7 @@ function MenuButton() {
     }, [showMenu]);
 
     const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
-    const shadowCl = showMenu ? " shadowCl" : ""
+    const shadowCl = showMenu ? " shadowCl" : "";
 
     return (
         <>
@@ -51,7 +51,7 @@ function MenuButton() {
             </button>
             <div className={ulClassName + ' logoutDropDown' + " logoutDropDrown-div"} ref={ulRef}>
                 <div className="logout-menu">
-                    <li className="login-button menu-buttons">
+                    <li className="signup-button menu-buttons">
                         {/* turn this into a modal */}
                         <NavLink to="/login" className="link login-signup-link">Log In</NavLink>
                     </li>

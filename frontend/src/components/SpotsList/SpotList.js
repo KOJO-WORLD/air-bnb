@@ -25,7 +25,7 @@ function SpotList() {
     // console.log(spotsArr);
 
     return (
-        <>
+        <div className='all-spots-page'>
             <h1>All Spots</h1>
             <div id="list">
                 {spotsArr.map(spot => {
@@ -34,7 +34,7 @@ function SpotList() {
                     </NavLink>
                 })}
             </div>
-        </>
+        </div>
     )
 }
 
