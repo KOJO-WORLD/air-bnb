@@ -49,7 +49,7 @@ span {
 
 .dropDown {
     margin-top: 10px;
-    border: 1px solid black;
+    border: none;
     grid-area: dropDown;
     position: absolute;
     right: 50px;

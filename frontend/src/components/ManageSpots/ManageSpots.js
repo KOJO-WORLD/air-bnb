@@ -32,7 +32,7 @@ const ManageSpots = () => {
     }, [onDelete])
 
     return (
-        <div>
+        <div className="manage-spots-page">
             <h1>Manage Spots</h1>
             <NavLink to="/createSpot" className={spotClass + '-link' + ' link'}>
                 <button id="create-button">
@@ -45,10 +45,12 @@ const ManageSpots = () => {
                         <NavLink key={spot.id} to={`/spots/${spot.id}`} className='link' id="spot-link">
                             <SpotCard key={spot.id} spot={spot} />
                         </NavLink>
-                        <button onClick={onDelete} id={spot.id} className='delete-button'>Delete</button>
-                        <NavLink to={`/spots/${spot.id}/edit`} className='link update-link'>
-                            <button className="update-button">Update</button>
-                        </NavLink>
+                        <div className="button-sect">
+                            <button onClick={onDelete} id={spot.id} className='delete-button'>Delete</button>
+                            <NavLink to={`/spots/${spot.id}/edit`} className='link update-link'>
+                                <button className="update-button">Update</button>
+                            </NavLink>
+                        </div>
                     </div>
                 })}
             </div>

@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { deleteReviewById, getReviews } from "../../store/reviews";
+import "./ReviewCard.css"
 
 const ReviewCard = ({ review }) => {
     const dispatch = useDispatch();
@@ -67,7 +68,7 @@ const ReviewCard = ({ review }) => {
                 </div>
             </div>
             <div className={reviewClass}>
-                <button onClick={onDelete}>Delete</button>
+                <button className="review-delete-button" onClick={onDelete}>Delete</button>
             </div>
         </div>
     )
