@@ -23,6 +23,24 @@ module.exports = {
         preview: false,
       },
       {
+        url: 'https://res.cloudinary.com/dbiv2lwhp/image/upload/v1698906132/3_Backyard-Oasis-Ideas_alm2an.jpg',
+        imageableId: 1,
+        imageableType: 'spot',
+        preview: false,
+      },
+      {
+        url: 'https://res.cloudinary.com/dbiv2lwhp/image/upload/v1698906127/inside_o49p1v.jpg',
+        imageableId: 1,
+        imageableType: 'spot',
+        preview: false,
+      },
+      {
+        url: 'https://res.cloudinary.com/dbiv2lwhp/image/upload/v1698906461/bedroom_wlo8wt.jpg',
+        imageableId: 1,
+        imageableType: 'spot',
+        preview: false,
+      },
+      {
         url: 'https://res.cloudinary.com/dbiv2lwhp/image/upload/v1678562645/fake_House1_duraad.jpg',
         imageableId: 2,
         imageableType: 'spot',
@@ -35,7 +53,19 @@ module.exports = {
         preview: false,
       },
       {
-        url: 'https://res.cloudinary.com/dbiv2lwhp/image/upload/v1678562686/Fake_House2_qvglm7.jpg',
+        url: 'https://res.cloudinary.com/dbiv2lwhp/image/upload/v1698906127/inside_o49p1v.jpg',
+        imageableId: 2,
+        imageableType: 'spot',
+        preview: false,
+      },
+      {
+        url: 'https://res.cloudinary.com/dbiv2lwhp/image/upload/v1698906132/3_Backyard-Oasis-Ideas_alm2an.jpg',
+        imageableId: 2,
+        imageableType: 'spot',
+        preview: false,
+      },
+      {
+        url: 'https://res.cloudinary.com/dbiv2lwhp/image/upload/v1698906461/bedroom_wlo8wt.jpg',
         imageableId: 2,
         imageableType: 'spot',
         preview: false,
@@ -53,7 +83,19 @@ module.exports = {
         preview: false,
       },
       {
-        url: 'https://res.cloudinary.com/dbiv2lwhp/image/upload/v1678562686/Fake_House2_qvglm7.jpg',
+        url: 'https://res.cloudinary.com/dbiv2lwhp/image/upload/v1698906127/inside_o49p1v.jpg',
+        imageableId: 3,
+        imageableType: 'spot',
+        preview: false,
+      },
+      {
+        url: 'https://res.cloudinary.com/dbiv2lwhp/image/upload/v1698906132/3_Backyard-Oasis-Ideas_alm2an.jpg',
+        imageableId: 3,
+        imageableType: 'spot',
+        preview: false,
+      },
+      {
+        url: 'https://res.cloudinary.com/dbiv2lwhp/image/upload/v1698906461/bedroom_wlo8wt.jpg',
         imageableId: 3,
         imageableType: 'spot',
         preview: false,
@@ -71,7 +113,19 @@ module.exports = {
         preview: false,
       },
       {
-        url: 'https://res.cloudinary.com/dbiv2lwhp/image/upload/v1678562686/Fake_House2_qvglm7.jpg',
+        url: 'https://res.cloudinary.com/dbiv2lwhp/image/upload/v1698906127/inside_o49p1v.jpg',
+        imageableId: 4,
+        imageableType: 'spot',
+        preview: false,
+      },
+      {
+        url: 'https://res.cloudinary.com/dbiv2lwhp/image/upload/v1698906132/3_Backyard-Oasis-Ideas_alm2an.jpg',
+        imageableId: 4,
+        imageableType: 'spot',
+        preview: false,
+      },
+      {
+        url: 'https://res.cloudinary.com/dbiv2lwhp/image/upload/v1698906461/bedroom_wlo8wt.jpg',
         imageableId: 4,
         imageableType: 'spot',
         preview: false,
