@@ -1,7 +1,12 @@
-#list {
-    /* border: 1px solid red; */
+.all-spots-page {
     padding-left: 60px;
     padding-right: 60px;
+}
+
+#all-list {
+    /* border: 1px solid red; */
+    /* padding-left: 60px; */
+    /* padding-right: 60px; */
     padding-top: 30px;
     padding-bottom: 30px;
     /* display: grid; */

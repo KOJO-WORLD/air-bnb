@@ -11,6 +11,33 @@
     /* border: 1px solid black; */
 }
 
+.main-header {
+    margin-bottom: 10px;
+}
+
+.secondary-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.header-rating-info {
+    height: 30px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-right: 15px;
+}
+
+.main-image {
+    grid-area: main;
+    display: flex;
+    /* border: 1px solid black; */
+    /* align-self: stretch;
+    justify-self: stretch; */
+}
+
 .spotImage {
     width: 98%;
     height: 98%;
@@ -28,22 +55,30 @@
     height: 500px;
 }
 
-.main-image {
-    grid-area: main;
-    display: flex;
-    /* border: 1px solid black; */
-    /* align-self: stretch;
-    justify-self: stretch; */
-}
-
 .other-images {
     /* border: 1px solid black; */
     grid-area: others;
     display: grid;
     grid-template: 1fr 1fr/1fr 1fr;
     grid-template-areas:
-        "2nd 3rd"
-        "4th 5th";
+        "second third"
+        "fourth fifth";
+}
+
+.second-img {
+    grid-area: second;
+}
+
+.third-img {
+    grid-area: third;
+}
+
+.fourth-img {
+    grid-area: fourth;
+}
+
+.fifth-img {
+    grid-area: fifth;
 }
 
 .review-summary {
@@ -141,6 +176,7 @@
 .description {
     width: 950px;
     height: 300px;
+    padding: 4.5px;
 }
 
 #delete-button {

@@ -121,8 +121,29 @@ const SpotDetails = () => {
     // console.log(spot && spot);
 
     const OgImgEleArr = spotImgArr && spotImgArr.map((spotImg, ind) => {
+        let imgName;
+
+        switch (ind) {
+            case 0:
+                imgName = "first-img"
+                break;
+            case 1:
+                imgName = "second-img"
+                break;
+            case 2:
+                imgName = "third-img"
+                break;
+            case 3:
+                imgName = "fourth-img"
+                break;
+            case 4:
+                imgName = "fifth-img"
+                break;
+            default:
+                break;
+        }
         return <div>
-            <img src={spotImg.url} alt='spot pic' id={ind} className='spotImage'></img>
+            <img src={spotImg.url} alt='spot pic' id={ind} className={imgName + ' spotImage'}></img>
         </div>
     })
 
@@ -133,19 +154,31 @@ const SpotDetails = () => {
     // console.log("preview", mainImg);
 
 
-    const imgEleArr = OgImgEleArr && OgImgEleArr.slice(1)
+    const imgEleArr = OgImgEleArr && OgImgEleArr.slice(1, 5)
 
     // console.log("the rest", imgEleArr);
 
     return (
         <div className="spotInfo">
             <div className="name-location">
-                <h1>
+                <h1 className="main-header">
                     {spot && spot.name}
                 </h1>
-                <h2>
-                    Location: {spot && spot.city}, {spot && spot.state}, {spot && spot.country}
-                </h2>
+                <div className="secondary-header">
+                    <div className="header-rating-info">
+                        <div>
+                            <i class="fa-solid fa-star"></i> {rating}
+                        </div>
+                        <p id="separater">  ·  </p>
+                        <div className={reviewClass}>
+                            {/* number of ratings */}
+                            {reviewsLng} {reviewStr}
+                        </div>
+                    </div>
+                    <div className="location-header">
+                        <i class="fa-solid fa-location-dot"></i> {spot && spot.city}, {spot && spot.state}, {spot && spot.country}
+                    </div>
+                </div>
             </div>
             <div className="spotImages" id="checker">
                 <div className="main-image">
@@ -176,11 +209,11 @@ const SpotDetails = () => {
                     <button onClick={onClick} id="reserve-button">Reserve</button>
                 </div>
             </div>
-            <h3>Hosted by: {spot && spot.Owner.firstName} {spot && spot.Owner.lastName}</h3>
+            {/* <h3>Hosted by: {spot && spot.Owner.firstName} {spot && spot.Owner.lastName}</h3> */}
             <div className="description">
-                <p>
+                <h2>
                     {spot && spot.description}
-                </p>
+                </h2>
             </div>
             <div className="reviews">
                 <div id="review-header">

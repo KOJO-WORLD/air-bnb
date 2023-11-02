@@ -26,8 +26,8 @@ function SpotList() {
 
     return (
         <div className='all-spots-page'>
-            <h1>All Spots</h1>
-            <div id="list">
+            <h1 className='all-spots-title'>All Spots</h1>
+            <div id="all-list">
                 {spotsArr.map(spot => {
                     return <NavLink key={spot.id} to={`/spots/${spot.id}`} className="link spot-link" id="spotLink">
                         <SpotCard key={spot.id} spot={spot} />

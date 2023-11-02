@@ -34,8 +34,8 @@
 
 #list {
     /* border: 1px solid red; */
-    padding-left: 60px;
-    padding-right: 60px;
+    /* padding-left: 60px; */
+    /* padding-right: 60px; */
     padding-top: 30px;
     padding-bottom: 30px;
     /* display: grid; */
@@ -47,4 +47,8 @@
 
 #spotLink {
     margin: 10px;
+}
+
+.all-spots-title {
+    padding-left: 10px;
 }
