@@ -3,6 +3,8 @@ import React, { useEffect, useState, useRef } from "react";
 import './Navigation.css';
 // import * as sessionActions from '../../store/session';
 import { NavLink, useHistory } from "react-router-dom";
+import OpenModalButton from "../OpenModalButton/OpenModalButton";
+import AboutSect from "../AboutSect";
 
 function MenuButton() {
     // const dispatch = useDispatch();
@@ -14,6 +16,10 @@ function MenuButton() {
         if (showMenu) return;
         setShowMenu(true);
     };
+
+    const handleAbout = () => {
+        setShowMenu(false);
+    }
 
     // const logout = (e) => {
     //     e.preventDefault();
@@ -62,9 +68,11 @@ function MenuButton() {
                     <li id="divider">
                         <hr color="d6d6d6" size="1"></hr>
                     </li>
-                    <li className="about-li menu-buttons">
+                    <li className="about-li menu-buttons" onClick={handleAbout}>
                         {/* Turn this into a modal with all of the appropriate info */}
-                        <button className='about-button'>About</button>
+                        {/* <button className='about-button'>About</button> */}
+                        {/* <OpenModalButton buttonText={"about"} component={AboutSect} buttonClass={'about-button'}/> */}
+                        <AboutSect buttonClass={"about-button"} />
                     </li>
                 </div>
             </div>

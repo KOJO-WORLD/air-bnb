@@ -5,8 +5,8 @@ import ProfileButton from './ProfileButton';
 import MenuButton from './MenuButton';
 // import * as sessionActions from '../../store/session';
 import './Navigation.css';
-import SpotForm from '../SpotForm/SpotForm';
-import OpenModalButton from './OpenModalButton';
+// import SpotForm from '../SpotForm/SpotForm';
+// import OpenModalButton from './OpenModalButton';
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);

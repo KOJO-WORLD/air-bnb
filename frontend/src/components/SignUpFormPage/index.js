@@ -30,10 +30,24 @@ function SignupFormPage() {
         return setErrors(['Confirm Password field must be the same as the Password field']);
     };
 
+    const demoClick = (e) => {
+        e.preventDefault();
+        setErrors([]);
+        const user = {
+            credential: 'DemoUser',
+            password: 'DemoPassword'
+        }
+        return dispatch(sessionActions.login(user))
+            .catch(async (res) => {
+                const data = await res.json();
+                if (data && data.errors) setErrors(data.errors);
+            });
+    }
+
     return (
-        <div id='form'>
-            <h2>Sign Up</h2>
-            <form onSubmit={handleSubmit}>
+        <div id='form' className='signupForm-page'>
+            <h2 className='signup-header'>Sign Up</h2>
+            <form onSubmit={handleSubmit} className='signupForm'>
                 <div id='signup-input'>
                     <ul>
                         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
@@ -93,7 +107,10 @@ function SignupFormPage() {
                         />
                     </label>
                 </div>
-                <button type="submit" id='signup-button'>Sign Up</button>
+                <div className='button-area'>
+                    <button type="submit" id='signup-button' className='buttons login-buttons'>Sign Up</button>
+                    <button onClick={demoClick} className="buttons login-buttons">Demo User</button>
+                </div>
             </form>
         </div>
     );

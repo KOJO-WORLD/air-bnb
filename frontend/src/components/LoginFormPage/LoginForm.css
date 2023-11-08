@@ -1,18 +1,31 @@
 .buttons {
-    border: 1px solid black;
+    border: none;
     background-color: #999999;
     color: white;
     border-radius: 15px 15px 15px 15px;
-    height: 25px;
+    height: 35px;
     width: 150px;
-    margin-top: 10px;
+    /* padding: 5px; */
+    padding-bottom: 5px;
+    margin: 5px;
 }
+
+.login-buttons {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/* .loginForm-page {
+    border-radius: 25px;
+    height: ;
+} */
 
 #login-input {
     padding-left: 3px;
 }
 
-#form {
+.loginForm-page {
+    border-radius: 25px;
     display: flex;
     flex-flow: column;
     justify-content: center;
@@ -20,9 +33,14 @@
     border: 1px solid #999999;
     position: absolute;
     top: 30%;
-    left: 40%;
-    width: 350px;
-    height: 300px;
+    left: 38%;
+    width: 400px;
+    height: 250px;
+}
+
+.login-header {
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 form {

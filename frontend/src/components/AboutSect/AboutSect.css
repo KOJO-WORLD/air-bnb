@@ -1,0 +1,12 @@
+.about-sect {
+    width: 500px;
+    height: 500px;
+    border-radius: 25px;
+    /* border: none; */
+    box-shadow: 1px 1px 3px 3px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    /* position: absolute; */
+    position: fixed;
+    top: 20%;
+    left: 35%;
+}

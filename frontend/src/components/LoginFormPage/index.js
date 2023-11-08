@@ -40,8 +40,8 @@ const LoginFormPage = () => {
     }
 
     return (
-        <div id='form'>
-            <h2>Log In</h2>
+        <div className='loginForm-page'>
+            <h2 className='login-header'>Log In</h2>
             <form onSubmit={handleSubmit}>
                 <div id='login-input'>
                     <ul>
@@ -66,8 +66,10 @@ const LoginFormPage = () => {
                         />
                     </label>
                 </div>
-                <button type="submit" id='login-button' className='buttons'>Log In</button>
-                <button onClick={demoClick} className="buttons">Demo User</button>
+                <div className='button-area'>
+                    <button type="submit" id='login-button' className='buttons login-buttons'>Log In</button>
+                    <button onClick={demoClick} className="buttons login-buttons">Demo User</button>
+                </div>
             </form>
         </div>
     );
