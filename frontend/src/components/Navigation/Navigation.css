@@ -89,6 +89,9 @@ span {
 .menu-buttons {
     padding-left: 30px;
     padding-right: 30px;
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
 }
 
 .menu-buttons:hover {
@@ -107,6 +110,7 @@ span {
 }
 
 .about-li {
+    padding-top: 10px;
     padding-bottom: 10px;
     margin-bottom: 10px;
 }

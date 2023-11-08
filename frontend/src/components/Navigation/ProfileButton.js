@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import './Navigation.css';
 import * as sessionActions from '../../store/session';
 import { NavLink, useHistory } from "react-router-dom";
+import AboutSect from "../AboutSect";
 
 function ProfileButton({ user }) {
     const dispatch = useDispatch();
@@ -75,7 +76,8 @@ function ProfileButton({ user }) {
                     </li>
                     <li className="signup-button menu-buttons">
                         {/* Turn this into a modal with all of the appropriate info */}
-                        <button className='about-button'><i class="fa-solid fa-circle-info"> </i> About</button>
+                        <AboutSect buttonClass={"about-button"} />
+                        {/* <button className='about-button'><i class="fa-solid fa-circle-info"> </i> About</button> */}
                     </li>
                     <li className="menu-buttons logout-li">
                         <button onClick={logout} className="about-button">Log Out</button>

@@ -10,6 +10,7 @@ function MenuButton() {
     // const dispatch = useDispatch();
     const [showMenu, setShowMenu] = useState(false);
     const ulRef = useRef();
+    const aboutRef = useRef();
     // const history = useHistory();
 
     const openMenu = () => {
@@ -17,9 +18,9 @@ function MenuButton() {
         setShowMenu(true);
     };
 
-    const handleAbout = () => {
-        setShowMenu(false);
-    }
+    // const handleAbout = () => {
+    //     setShowMenu(true);
+    // }
 
     // const logout = (e) => {
     //     e.preventDefault();
@@ -68,7 +69,8 @@ function MenuButton() {
                     <li id="divider">
                         <hr color="d6d6d6" size="1"></hr>
                     </li>
-                    <li className="about-li menu-buttons" onClick={handleAbout}>
+                    {/* <li className="about-li menu-buttons" onClick={handleAbout}> */}
+                    <li className="about-li menu-buttons">
                         {/* Turn this into a modal with all of the appropriate info */}
                         {/* <button className='about-button'>About</button> */}
                         {/* <OpenModalButton buttonText={"about"} component={AboutSect} buttonClass={'about-button'}/> */}

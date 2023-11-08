@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react"
 import "./AboutSect.css"
 
-const AboutSect = ({buttonClass, menuClose}) => {
-// const AboutSect = () => {
+const AboutSect = ({ buttonClass, menuClose }) => {
+    // const AboutSect = () => {
     const [showAbout, setShowAbout] = useState(false)
     const ulRef = useRef()
 
@@ -11,19 +11,23 @@ const AboutSect = ({buttonClass, menuClose}) => {
         setShowAbout(true);
     };
 
-    useEffect(() => {
-        if (!showAbout) return;
+    const clickCloseAbout = () => {
+        setShowAbout(false);
+    }
 
-        const closeAbout = (e) => {
-            if (!ulRef.current.contains(e.target)) {
-                setShowAbout(false);
-            }
-        };
+    // useEffect(() => {
+    //     if (!showAbout) return;
 
-        document.addEventListener('click', closeAbout);
+    //     const closeAbout = (e) => {
+    //         if (!ulRef.current.contains(e.target)) {
+    //             setShowAbout(false);
+    //         }
+    //     };
 
-        return () => document.removeEventListener("click", closeAbout);
-    }, [showAbout]);
+    //     document.addEventListener('click', closeAbout);
+
+    //     return () => document.removeEventListener("click", closeAbout);
+    // }, [showAbout]);
 
     const ulClassName = "profile-dropdown" + (showAbout ? "" : " hidden");
     // const shadowCl = showMenu ? " shadowCl" : "";
@@ -31,20 +35,36 @@ const AboutSect = ({buttonClass, menuClose}) => {
 
     return (
         <>
-            <button className={buttonClass} onClick={openAbout}>
-                about
-            </button>
-            <div className={ulClassName +  " about-sect"}>
-            {/* <div> */}
-                <h2>About</h2>
-                <h4>Creator: Laila Denman</h4>
-                <h4>Email</h4>
-                <h4>Repo</h4>
-                <h4>Github</h4>
-                <h4>Portfolio site</h4>
-                <h4>Resume</h4>
-                <h4>LinkedIn</h4>
-                <button>close</button>
+            <button className={buttonClass} onClick={openAbout}><i class="fa-solid fa-circle-info"> </i> About</button>
+            {/* <button className={buttonClass} onClick={openAbout}> */}
+            {/* about */}
+            {/* </button> */}
+            <div className={ulClassName + " about-sect-background"}>
+                <div className={ulClassName + " about-sect"}>
+                    {/* <div> */}
+                    <div className="about-top">
+                        <h2 className="about-header">About</h2>
+                        <h4 className="about-header">Developer: Laila Denman</h4>
+                        <h4 className="about-header">Email: Lailadenman@gmail.com</h4>
+                    </div>
+                    <div className="about-links">
+                        <div className="link-row1">
+                            <a href="https://github.com/Lailadenman/Airbnb" target="_blank" className="about-link">Github Project Repo</a>
+                            |
+                            <a href="https://www.lailadenman.com/startbootstrap-agency-master/dist/index.html" target="_blank" className="about-link">Portfolio</a>
+                        </div>
+                        <div className="link-row2">
+                            <a href="https://github.com/Lailadenman" target="_blank" className="about-link">Github</a>
+                            |
+                            <a href="https://drive.google.com/file/d/1lIofKBxHW164-QZ2CaJrd5lAY_RW5zim/view?usp=sharing" target="_blank" className="about-link">Resume</a>
+                            |
+                            <a href="https://www.linkedin.com/in/laila-denman/" target="_blank" className="about-link">LinkedIn</a>
+                        </div>
+                    </div>
+                    <div className="about-close-div">
+                        <button onClick={clickCloseAbout} className="about-close-button">close</button>
+                    </div>
+                </div>
             </div>
         </>
     )

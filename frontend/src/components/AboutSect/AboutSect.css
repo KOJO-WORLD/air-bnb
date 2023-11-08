@@ -1,12 +1,74 @@
 .about-sect {
-    width: 500px;
-    height: 500px;
+    width: 400px;
+    height: 350px;
     border-radius: 25px;
     /* border: none; */
     box-shadow: 1px 1px 3px 3px rgba(0, 0, 0, 0.1);
     background-color: white;
-    /* position: absolute; */
-    position: fixed;
+    position: absolute;
+    /* position: fixed; */
     top: 20%;
-    left: 35%;
+    left: 37%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.about-sect-background {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.about-top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.about-header {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.about-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.about-link {
+    margin: 2px;
+    color: black;
+}
+
+.about-link:visited {
+    color: black;
+}
+
+.about-close-div {
+    margin: 5px;
+}
+
+.about-close-button {
+    border: none;
+    background-color: #999999;
+    color: white;
+    border-radius: 15px 15px 15px 15px;
+    height: 35px;
+    width: 150px;
+    margin-top: 10px;
+    /* margin-bottom: 10px; */
+    padding: 5px;
+    padding-bottom: 5px;
 }
