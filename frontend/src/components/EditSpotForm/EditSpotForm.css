@@ -1,0 +1,26 @@
+.edit-spot-form {
+    width: 850px;
+}
+
+#edit-form-div {
+    width: 950px;
+    /* border: 1px solid #999999; */
+    box-shadow: 1px 1px 3px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    padding: 5px;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.edit-form-headers {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.edit-page-div {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}

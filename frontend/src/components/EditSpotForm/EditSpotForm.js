@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { updateSpotById } from "../../store/spots";
 import { useHistory, useParams } from "react-router-dom";
 import { getSpotById } from "../../store/spots";
+import "./EditSpotForm.css"
 
 const EditSpotForm = () => {
     const dispatch = useDispatch();
@@ -48,7 +49,7 @@ const EditSpotForm = () => {
     const [images, setImages] = useState(imgArr);
 
     useEffect(() => {
-        if(spot) {
+        if (spot) {
             setAddress(spot.address);
             setCity(spot.city);
             setState(spot.state);
@@ -147,149 +148,174 @@ const EditSpotForm = () => {
     }
 
     return (
-        <div>
-            <h1>Edit spot</h1>
-            <form onSubmit={handleSubmit}>
-                <section>
-                    <h3>Where's your place located?</h3>
-                    <h4>Guests will only get your exact address once they booked a reservation.</h4>
+        <div className="edit-page-div">
+            <div id="edit-form-div">
+                <h1 className="edit-spot-form-header">Edit spot</h1>
+                <form onSubmit={handleSubmit} className="edit-spot-form">
+                    <section id="location">
+                        <h2 className="edit-form-headers">Where's your place located?</h2>
+                        <h3>Guests will only get your exact address once they booked a reservation.</h3>
 
-                    <label for="Address">Address: </label>
-                    <input
-                        name="Address"
-                        id="Address"
-                        type="text"
-                        placeholder="address"
-                        required
-                        value={address}
-                        onChange={updateAddress}
-                    ></input>
-                    <label for="City">City: </label>
-                    <input
-                        name="City"
-                        id="City"
-                        type="text"
-                        placeholder="city"
-                        required
-                        value={city}
-                        onChange={updateCity}
-                    ></input>
-                    <label for="State">State: </label>
-                    <input
-                        name="State"
-                        id="State"
-                        type="text"
-                        placeholder="state"
-                        maxLength={2}
-                        required
-                        value={state}
-                        onChange={updateState}
-                    ></input>
-                    <label for="Country">Country: </label>
-                    <input
-                        name="Country"
-                        id="Country"
-                        type="text"
-                        placeholder="country"
-                        required
-                        value={country}
-                        onChange={updateCountry}
-                    ></input>
-                    <label for="Lat">Latitude: </label>
-                    <input
-                        name="Lat"
-                        id="Lat"
-                        type="number"
-                        placeholder="latitude (optional)"
-                        required
-                        value={lat}
-                        onChange={updateLat}
-                    ></input>
-                    <label for="Lng">Longitutde: </label>
-                    <input
-                        name="Lng"
-                        id="Lng"
-                        type="number"
-                        placeholder="longitutde (optional)"
-                        required
-                        value={lng}
-                        onChange={updateLng}
-                    ></input>
-                </section>
-                <section>
-                    <h3>Describe your place to guests</h3>
-                    <h4>Mention the best features of your space, any special amentities like fast wifi or parking, and what you love about the neighborhood.</h4>
-                    <label for="description">Description: </label>
-                    <input
-                        name="description"
-                        id="description"
-                        type="text"
-                        placeholder="Please write at least 30 characters"
-                        required
-                        value={description}
-                        onChange={updateDescription}
-                    ></input>
-                </section>
-                <section>
-                    <h3>Create a title for your spot</h3>
-                    <h4>Catch guests' attention with a spot title that highlights what makes your place special.</h4>
-                    <label for="name">Name: </label>
-                    <input
-                        name="name"
-                        id="name"
-                        type="text"
-                        placeholder="Name of your spot"
-                        required
-                        value={name}
-                        onChange={updateName}
-                    ></input>
-                </section>
-                <section>
-                    <h3>Liven up your spot with photos</h3>
-                    <h4>Submit a link to at least one photo to publish your spot.</h4>
-                    {/* <label for="image">Price: </label> */}
-                    <input
-                        name="preview-image"
-                        id="preview-image"
-                        type="text"
-                        placeholder="Preview Image URL"
-                        required
-                        value={prev}
-                        onChange={updatePrevImage}
-                    ></input>
-                    {
-                        imgInputs
-                        // imgArr.map(img => {
-                        //     <input
-                        //         className="image"
-                        //         type="text"
-                        //         placeholder="Image URL"
-                        //         required
-                        //         value={img}
-                        //         onChange={updateImages}
-                        //     ></input>
-                        // })
-                    }
-                </section>
-                <section>
-                    <h3>Set a base price for your spot</h3>
-                    <h4>Competitive pricing can help your listing stand out and rank higher in search results.</h4>
-                    <label for="price">Price: </label>
-                    <input
-                        name="price"
-                        id="price"
-                        type="number"
-                        step="0.01"
-                        min={0}
-                        max={999999999}
-                        placeholder="Price per night (USD)"
-                        required
-                        value={price}
-                        onChange={updatePrice}
-                    ></input>
-                </section>
-                <button type="submit">Submit</button>
-            </form>
+                        <div id="address-div">
+                            <label for="Address">Address: </label>
+                            <input
+                                name="Address"
+                                id="Address"
+                                type="text"
+                                placeholder="address"
+                                required
+                                value={address}
+                                onChange={updateAddress}
+                            ></input>
+                        </div>
+                        <div id="city-state">
+                            <div id="city-div">
+                                <label for="City">City: </label>
+                                <input
+                                    name="City"
+                                    id="City"
+                                    type="text"
+                                    placeholder="city"
+                                    required
+                                    value={city}
+                                    onChange={updateCity}
+                                ></input>
+                            </div>
+                            <div id="state-div">
+                                <label for="State">State: </label>
+                                <input
+                                    name="State"
+                                    id="State"
+                                    type="text"
+                                    placeholder="state"
+                                    maxLength={2}
+                                    required
+                                    value={state}
+                                    onChange={updateState}
+                                ></input>
+                            </div>
+                        </div>
+                        <div id="country-div">
+                            <label for="Country">Country: </label>
+                            <input
+                                name="Country"
+                                id="Country"
+                                type="text"
+                                placeholder="country"
+                                required
+                                value={country}
+                                onChange={updateCountry}
+                            ></input>
+                        </div>
+                        <div id="lng-lat">
+                            <div id="lat-div">
+                                <label for="Lat">Latitude: </label>
+                                <input
+                                    name="Lat"
+                                    id="Lat"
+                                    type="number"
+                                    placeholder="latitude (optional)"
+                                    required
+                                    value={lat}
+                                    onChange={updateLat}
+                                ></input>
+                            </div>
+                            <div id="lng-div">
+                                <label for="Lng">Longitutde: </label>
+                                <input
+                                    name="Lng"
+                                    id="Lng"
+                                    type="number"
+                                    placeholder="longitutde (optional)"
+                                    required
+                                    value={lng}
+                                    onChange={updateLng}
+                                ></input>
+                            </div>
+                        </div>
+                        <hr class="solid"></hr>
+                    </section>
+                    <section id="description">
+                        <h2 className="edit-form-headers">Describe your place to guests</h2>
+                        <h3>Mention the best features of your space, any special amentities like fast wifi or parking, and what you love about the neighborhood.</h3>
+                        {/* <label for="description">Description: </label> */}
+                        <input
+                            name="description"
+                            id="description"
+                            type="text"
+                            placeholder="Please write at least 30 characters"
+                            required
+                            value={description}
+                            onChange={updateDescription}
+                        ></input>
+                        <hr class="solid"></hr>
+                    </section>
+                    <section id="title">
+                        <h2 className="edit-form-headers">Create a title for your spot</h2>
+                        <h3>Catch guests' attention with a spot title that highlights what makes your place special.</h3>
+                        {/* <label for="name">Name: </label> */}
+                        <input
+                            name="name"
+                            id="name"
+                            type="text"
+                            placeholder="Name of your spot"
+                            required
+                            value={name}
+                            onChange={updateName}
+                        ></input>
+                        <hr class="solid"></hr>
+                    </section>
+                    <section id="pics">
+                        <h2>Liven up your spot with photos</h2>
+                        <h3>Submit a link to at least one photo to publish your spot.</h3>
+                        {/* <label for="image">Price: </label> */}
+                        <input
+                            name="preview-image"
+                            id="preview-image"
+                            type="text"
+                            placeholder="Preview Image URL"
+                            required
+                            value={prev}
+                            onChange={updatePrevImage}
+                        ></input>
+                        {
+                            imgInputs
+                            // imgArr.map(img => {
+                            //     <input
+                            //         className="image"
+                            //         type="text"
+                            //         placeholder="Image URL"
+                            //         required
+                            //         value={img}
+                            //         onChange={updateImages}
+                            //     ></input>
+                            // })
+                        }
+                        <hr class="solid"></hr>
+                    </section>
+                    <section id="pricing">
+                        <h2 className="edit-form-headers">Set a base price for your spot</h2>
+                        <h3>Competitive pricing can help your listing stand out and rank higher in search results.</h3>
+                        <label for="price">Price: </label>
+                        <input
+                            name="price"
+                            id="price"
+                            type="number"
+                            step="0.01"
+                            min={0}
+                            max={999999999}
+                            placeholder="Price per night (USD)"
+                            required
+                            value={price}
+                            onChange={updatePrice}
+                        ></input>
+                        <hr class="solid"></hr>
+                    </section>
+                    <div id="submit-button">
+                        <button id="submit" type="submit" className="create-submit-button">Submit</button>
+                    </div>
+                </form>
+            </div>
         </div>
     )
 }

@@ -68,10 +68,10 @@ const SpotForm = () => {
     return (
         <div className="page-div">
             <div id="form-div">
-                <h1>Create a new spot</h1>
-                <form onSubmit={handleSubmit}>
+                <h1 className="create-spot-form-header">Create a new spot</h1>
+                <form onSubmit={handleSubmit} className="create-spot-form">
                     <section id="location">
-                        <h2>Where's your place located?</h2>
+                        <h2 className="create-form-headers">Where's your place located?</h2>
                         <h3>Guests will only get your exact address once they booked a reservation.</h3>
 
                         <div id="address-div">
@@ -154,7 +154,7 @@ const SpotForm = () => {
                         <hr class="solid"></hr>
                     </section>
                     <section id="description">
-                        <h2>Describe your place to guests</h2>
+                        <h2 className="create-form-headers">Describe your place to guests</h2>
                         <h3>Mention the best features of your space, any special amentities like fast wifi or parking, and what you love about the neighborhood.</h3>
                         {/* <label for="description">Description: </label> */}
                         <input
@@ -169,7 +169,7 @@ const SpotForm = () => {
                         <hr class="solid"></hr>
                     </section>
                     <section id="title">
-                        <h2>Create a title for your spot</h2>
+                        <h2 className="create-form-headers">Create a title for your spot</h2>
                         <h3>Catch guests' attention with a spot title that highlights what makes your place special.</h3>
                         {/* <label for="name">Name: </label> */}
                         <input
@@ -185,7 +185,7 @@ const SpotForm = () => {
                     </section>
                     <section id="pics">
                         <div>
-                            <h2>Liven up your spot with photos</h2>
+                            <h2 className="create-form-headers">Liven up your spot with photos</h2>
                             <h3>Submit a link to at least one photo to publish your spot.</h3>
                         </div>
                         <input
@@ -236,7 +236,7 @@ const SpotForm = () => {
                         <hr class="solid"></hr>
                     </section>
                     <section id="pricing">
-                        <h2>Set a base price for your spot</h2>
+                        <h2 className="create-form-headers">Set a base price for your spot</h2>
                         <h3>Competitive pricing can help your listing stand out and rank higher in search results.</h3>
                         <label for="price">Price: </label>
                         <input
@@ -254,7 +254,7 @@ const SpotForm = () => {
                         <hr class="solid"></hr>
                     </section>
                     <div id="submit-button">
-                        <button id="submit" type="submit" >Submit</button>
+                        <button id="submit" type="submit" className="create-submit-button">Submit</button>
                     </div>
                 </form>
             </div>
