@@ -226,7 +226,7 @@ const SpotDetails = () => {
                     </div>
                 </div>
                 <NavLink to="/write-review" className="link">
-                    <button className={postButtonClass + reviewClass}>Post a review</button>
+                    <button className={postButtonClass + reviewClass + " post-review-button"}>Post a review</button>
                 </NavLink>
                 <div className={modalClass}>
                     <ReviewForm />

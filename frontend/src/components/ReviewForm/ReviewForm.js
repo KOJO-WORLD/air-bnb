@@ -40,20 +40,23 @@ const ReviewForm = () => {
     }
 
     return (
-        <div id="form">
-            <form onSubmit={onSubmit}>
-                <h2>How was your Stay?</h2>
-                <div>
-                    <label
-                        for="stars"
-                    >Stars: </label>
-                    <input id="star-input" name="stars" type='number' onChange={updateStars} max={5} min={1}></input>
+        <div className="review-form-page">
+            <form onSubmit={onSubmit} className="review-form">
+                <h2 className="review-form-headers">Leave a Review!</h2>
+                <h3 className="review-form-headers">How was your Stay?</h3>
+                <div className="review-sect">
+                    <div className="stars-sect">
+                        <label
+                            for="stars"
+                        >Stars: </label>
+                        <input id="star-input" name="stars" type='number' onChange={updateStars} max={5} min={1}></input> /5
+                    </div>
+                    <textarea
+                        placeholder='Leave your review here...'
+                        onChange={updateReview}
+                        className="review-textarea"
+                    ></textarea>
                 </div>
-                {/* <hr class="solid"></hr> */}
-                <textarea
-                    placeholder='Leave your review here...'
-                    onChange={updateReview}
-                ></textarea>
                 <button className={submitClass} id="submit">Submit Review</button>
             </form>
         </div>

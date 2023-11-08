@@ -216,3 +216,16 @@
     padding-left: 25px;
     padding-right: 25px;
 }
+
+.post-review-button {
+    border: none;
+    background-color: #999999;
+    color: white;
+    border-radius: 15px 15px 15px 15px;
+    height: 35px;
+    width: 150px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 5px;
+    padding-bottom: 5px;
+}
