@@ -2,7 +2,7 @@
 
 ## Database Schema Design
 
-![airbnb schema](https://github.com/[Lailadenman]/[Airbnb]/blob/[main]/Airbnb_schema_mswv5h.png?raw=true)
+![airbnb schema](https://github.com/[Lailadenman]/[Airbnb]/photos/blob/[main]/Airbnb_schema_mswv5h.png?raw=true)
 
 ## API Documentation
 
