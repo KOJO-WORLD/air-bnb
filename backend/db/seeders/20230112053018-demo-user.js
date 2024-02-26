@@ -42,6 +42,134 @@ module.exports = {
         firstName: 'Third',
         lastName: 'Imposter',
         hashedPassword: bcrypt.hashSync('Password3')
+      },
+      {
+        id: 5,
+        email: 'laila@fake.com',
+        username: 'lailadenman',
+        firstName: 'Laila',
+        lastName: 'Denman',
+        hashedPassword: bcrypt.hashSync('Password4')
+      },
+      {
+        id: 6,
+        email: 'jonathan@fake.com',
+        username: 'jonathantavitian',
+        firstName: 'Jonathan',
+        lastName: 'Tavitian',
+        hashedPassword: bcrypt.hashSync('Password5')
+      },
+      {
+        id: 7,
+        email: "jennifer@fake.com",
+        username: "jenniferdavis",
+        firstName: "Jennifer",
+        lastName: "Davis",
+        hashedPassword: "bcrypt.hashSync('DavisPassword')"
+      },
+      {
+        id: 8,
+        email: "adam@fake.com",
+        username: "adamwilson",
+        firstName: "Adam",
+        lastName: "Wilson",
+        hashedPassword: "bcrypt.hashSync('WilsonPassword')"
+      },
+      {
+        id: 9,
+        email: "sophia@fake.com",
+        username: "sophiamartinez",
+        firstName: "Sophia",
+        lastName: "Martinez",
+        hashedPassword: "bcrypt.hashSync('MartinezPassword')"
+      },
+      {
+        id: 10,
+        email: "william@fake.com",
+        username: "williamtaylor",
+        firstName: "William",
+        lastName: "Taylor",
+        hashedPassword: "bcrypt.hashSync('TaylorPassword')"
+      },
+      {
+        id: 11,
+        email: "sam@fake.com",
+        username: "samwilson",
+        firstName: "Sam",
+        lastName: "Wilson",
+        hashedPassword: "bcrypt.hashSync('SamPassword')"
+      },
+      {
+        id: 12,
+        email: "emily@fake.com",
+        username: "emilybrown",
+        firstName: "Emily",
+        lastName: "Brown",
+        hashedPassword: "bcrypt.hashSync('BrownPassword')"
+      },
+      {
+        id: 13,
+        email: "michael@fake.com",
+        username: "michaeljohnson",
+        firstName: "Michael",
+        lastName: "Johnson",
+        hashedPassword: "bcrypt.hashSync('JohnsonPassword')"
+      },
+      {
+        id: 14,
+        email: "sarah@fake.com",
+        username: "sarahmiller",
+        firstName: "Sarah",
+        lastName: "Miller",
+        hashedPassword: "bcrypt.hashSync('MillerPassword')"
+      },
+      {
+        id: 15,
+        email: "david@fake.com",
+        username: "davidrobinson",
+        firstName: "David",
+        lastName: "Robinson",
+        hashedPassword: "bcrypt.hashSync('RobinsonPassword')"
+      },
+      {
+        id: 16,
+        email: "jessica@fake.com",
+        username: "jessicawhite",
+        firstName: "Jessica",
+        lastName: "White",
+        hashedPassword: "bcrypt.hashSync('WhitePassword')"
+      },
+      {
+        id: 17,
+        email: "ryan@fake.com",
+        username: "ryanmiller",
+        firstName: "Ryan",
+        lastName: "Miller",
+        hashedPassword: "bcrypt.hashSync('RyanPassword')"
+      },
+      {
+        id: 18,
+        email: "alex@fake.com",
+        username: "alexanderbrown",
+        firstName: "Alexander",
+        lastName: "Brown",
+        hashedPassword: "bcrypt.hashSync('AlexanderPassword')"
+      },
+      {
+        id: 19,
+        email: "olivia@fake.com",
+        username: "oliviasmith",
+        firstName: "Olivia",
+        lastName: "Smith",
+        hashedPassword: "bcrypt.hashSync('SmithPassword')"
+      },
+      {
+        id: 20,
+        email: "nathan@fake.com",
+        username: "nathanwilliams",
+        firstName: "Nathan",
+        lastName: "Williams",
+        hashedPassword: "bcrypt.hashSync('WilliamsPassword')"
       }
     ], {});
 
