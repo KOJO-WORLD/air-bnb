@@ -93,7 +93,7 @@ const SpotDetails = () => {
 
     // console.log(reviewsLng, authorized);
     if (reviewsLng === 0 && !authorized) {
-        reviewSect = 'Be the first to post a review!'
+        reviewSect = <div>Be the first to post a review!</div>
         reviewClass = ' visible';
     }
 
@@ -159,88 +159,90 @@ const SpotDetails = () => {
     // console.log("the rest", imgEleArr);
 
     return (
-        <div className="spotInfo">
-            <div className="name-location">
-                <h1 className="main-header">
-                    {spot && spot.name}
-                </h1>
-                <div className="secondary-header">
-                    <div className="header-rating-info">
-                        <div>
-                            <i class="fa-solid fa-star"></i> {rating}
+        <div className="spotDetailPage">
+            <div className="spotInfo">
+                <div className="name-location">
+                    <h1 className="main-header">
+                        {spot && spot.name}
+                    </h1>
+                    <div className="secondary-header">
+                        <div className="header-rating-info">
+                            <div>
+                                <i class="fa-solid fa-star"></i> {rating}
+                            </div>
+                            <p id="separater">  ·  </p>
+                            <div className={reviewClass}>
+                                {/* number of ratings */}
+                                {reviewsLng} {reviewStr}
+                            </div>
                         </div>
-                        <p id="separater">  ·  </p>
+                        <div className="location-header">
+                            <i class="fa-solid fa-location-dot"></i> {spot && spot.city}, {spot && spot.state}, {spot && spot.country}
+                        </div>
+                    </div>
+                </div>
+                <div className="spotImages" id="checker">
+                    <div className="main-image">
+                        {mainImg}
+                    </div>
+                    <div className="other-images">
+                        {imgEleArr}
+                    </div>
+                </div>
+                <div className="review-summary">
+                    <div className="upper">
+                        <div className="callout">
+                            <p id="price">${spot && spot.price}</p>
+                            <p id="night">/Night</p>
+                        </div>
+                        <div className="rating-info">
+                            <div>
+                                <i class="fa-solid fa-star"></i> {rating}
+                            </div>
+                            <p id="separater">  ·  </p>
+                            <div className={reviewClass}>
+                                {/* number of ratings */}
+                                {reviewsLng} {reviewStr}
+                            </div>
+                        </div>
+                    </div>
+                    <div className="lower">
+                        <button onClick={onClick} id="reserve-button">Reserve</button>
+                    </div>
+                </div>
+                {/* <h3>Hosted by: {spot && spot.Owner.firstName} {spot && spot.Owner.lastName}</h3> */}
+                <div className="description">
+                    <h2>
+                        {spot && spot.description}
+                    </h2>
+                </div>
+                <div className="reviews">
+                    <div id="review-header">
+                        <div>
+                            <i class="fa-solid fa-star" id="header-star"></i> {rating}
+                        </div>
+                        <p id="separater">·</p>
                         <div className={reviewClass}>
-                            {/* number of ratings */}
                             {reviewsLng} {reviewStr}
                         </div>
                     </div>
-                    <div className="location-header">
-                        <i class="fa-solid fa-location-dot"></i> {spot && spot.city}, {spot && spot.state}, {spot && spot.country}
+                    <NavLink to="/write-review" className="link">
+                        <button className={postButtonClass + reviewClass + " post-review-button"}>Post a review</button>
+                    </NavLink>
+                    <div className={modalClass}>
+                        <ReviewForm />
                     </div>
+                    {reviewSect}
+                    {revArr && revArr.map(review => {
+                        // console.log(review.Owner.firstName, review.id, review.review);
+                        return <ReviewCard key={review.id} review={review} />
+                    })}
                 </div>
-            </div>
-            <div className="spotImages" id="checker">
-                <div className="main-image">
-                    {mainImg}
-                </div>
-                <div className="other-images">
-                    {imgEleArr}
-                </div>
-            </div>
-            <div className="review-summary">
-                <div className="upper">
-                    <div className="callout">
-                        <p id="price">${spot && spot.price}</p>
-                        <p id="night">/Night</p>
-                    </div>
-                    <div className="rating-info">
-                        <div>
-                            <i class="fa-solid fa-star"></i> {rating}
-                        </div>
-                        <p id="separater">  ·  </p>
-                        <div className={reviewClass}>
-                            {/* number of ratings */}
-                            {reviewsLng} {reviewStr}
-                        </div>
-                    </div>
-                </div>
-                <div className="lower">
-                    <button onClick={onClick} id="reserve-button">Reserve</button>
-                </div>
-            </div>
-            {/* <h3>Hosted by: {spot && spot.Owner.firstName} {spot && spot.Owner.lastName}</h3> */}
-            <div className="description">
-                <h2>
-                    {spot && spot.description}
-                </h2>
-            </div>
-            <div className="reviews">
-                <div id="review-header">
-                    <div>
-                        <i class="fa-solid fa-star" id="header-star"></i> {rating}
-                    </div>
-                    <p id="separater">·</p>
-                    <div className={reviewClass}>
-                        {reviewsLng} {reviewStr}
-                    </div>
-                </div>
-                <NavLink to="/write-review" className="link">
-                    <button className={postButtonClass + reviewClass + " post-review-button"}>Post a review</button>
+                <button onClick={onDelete} className={userClass} id="delete-button">Delete</button>
+                <NavLink to={`/spots/${spotId}/edit`} className={userClass + '-link'}>
+                    <button className={editButtonClass} id="update-button">Update</button>
                 </NavLink>
-                <div className={modalClass}>
-                    <ReviewForm />
-                </div>
-                {reviewSect}
-                {revArr && revArr.map(review => {
-                    // console.log(review.Owner.firstName, review.id, review.review);
-                    return <ReviewCard key={review.id} review={review} />
-                })}
             </div>
-            <button onClick={onDelete} className={userClass} id="delete-button">Delete</button>
-            <NavLink to={`/spots/${spotId}/edit`} className={userClass + '-link'}>
-                <button className={editButtonClass} id="update-button">Update</button>
-            </NavLink>
         </div>
 
     )
