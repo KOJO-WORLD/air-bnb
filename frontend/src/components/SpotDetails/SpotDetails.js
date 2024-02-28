@@ -215,6 +215,11 @@ const SpotDetails = () => {
                     <h2>
                         {spot && spot.description}
                     </h2>
+                    <div className="hostName">
+                        <div>
+
+                        </div>
+                    </div>
                 </div>
                 <div className="reviews">
                     <div id="review-header">
