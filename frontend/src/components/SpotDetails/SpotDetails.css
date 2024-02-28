@@ -1,3 +1,28 @@
+@media screen and (width >=1400px) {
+    .spotInfo {
+        width: 1400px;
+    }
+
+    .review-summary {
+        position: absolute;
+        top: 725px;
+        left: 1510px;
+    }
+
+    .spotDetailPage {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+@media screen and (width < 1400px) {
+    .review-summary {
+        position: absolute;
+        top: 725px;
+        right: 90px;
+    }
+}
+
 .hidden {
     display: none;
 }
@@ -93,16 +118,17 @@
 }
 
 .review-summary {
-    position: absolute;
+    /* position: absolute;
     top: 725px;
-    right: 90px;
-    border: 2px solid black;
+    right: 90px; */
+    border: 1px solid rgba(0, 0, 0, 0.075);
     border-radius: 10px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.185);
     display: grid;
     grid-template: 60px 40px/1fr;
     grid-template-areas:
-    "info"
-    "reserve";
+        "info"
+        "reserve";
     width: 350px;
     height: 100px;
     z-index: 1;
@@ -113,7 +139,7 @@
     display: grid;
     grid-template: 1fr/1fr 1fr;
     grid-template-areas:
-    "price rating";
+        "price rating";
 }
 
 #separater {
