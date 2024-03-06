@@ -66,8 +66,18 @@ hr.solid {
     display: flex;
 }
 
+.multi-input {
+    margin-right: 25px;
+}
+
 input {
     width: 96%;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.075);
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.185);
 }
 
 #state-div {

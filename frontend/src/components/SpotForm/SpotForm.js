@@ -80,32 +80,32 @@ const SpotForm = () => {
                                 name="Address"
                                 id="Address"
                                 type="text"
-                                placeholder="address"
+                                placeholder="Address"
                                 required
                                 // value={String}
                                 onChange={updateAddress}
                             ></input>
                         </div>
                         <div id="city-state">
-                            <div id="city-div">
+                            <div id="city-div" className="multi-input">
                                 <label for="City">City: </label>
                                 <input
                                     name="City"
                                     id="City"
                                     type="text"
-                                    placeholder="city"
+                                    placeholder="City"
                                     required
                                     // value={String}
                                     onChange={updateCity}
                                 ></input>
                             </div>
-                            <div id="state-div">
+                            <div id="state-div" className="multi-input">
                                 <label for="State">State: </label>
                                 <input
                                     name="State"
                                     id="State"
                                     type="text"
-                                    placeholder="state"
+                                    placeholder="State"
                                     maxLength={2}
                                     required
                                     // value={String}
@@ -119,32 +119,32 @@ const SpotForm = () => {
                                 name="Country"
                                 id="Country"
                                 type="text"
-                                placeholder="country"
+                                placeholder="Country"
                                 required
                                 // value={String}
                                 onChange={updateCountry}
                             ></input>
                         </div>
                         <div id="lng-lat">
-                            <div id="lat-div">
+                            <div id="lat-div" className="multi-input">
                                 <label for="Lat">Latitude: </label>
                                 <input
                                     name="Lat"
                                     id="Lat"
                                     type="number"
-                                    placeholder="latitude (optional)"
+                                    placeholder="Latitude (optional)"
                                     // required
                                     // value={Number}
                                     onChange={updateLat}
                                 ></input>
                             </div>
-                            <div id="lng-div">
+                            <div id="lng-div" className="multi-input">
                                 <label for="Lng">Longitutde: </label>
                                 <input
                                     name="Lng"
                                     id="Lng"
                                     type="number"
-                                    placeholder="longitutde (optional)"
+                                    placeholder="Longitutde (optional)"
                                     // required
                                     // value={Number}
                                     onChange={updateLng}
